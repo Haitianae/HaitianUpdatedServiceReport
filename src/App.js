@@ -1,24 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from "react";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import Login from "./Pages/Login";
+import ServiceForm from "./Pages/ServiceForm";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <Routes>
+
+        {/* LOGIN */}
+        <Route
+          path="/login"
+          element={
+            user ? (
+              <Navigate to="/" replace />
+            ) : (
+              <Login onLoginSuccess={handleLoginSuccess} />
+            )
+          }
+        />
+
+        {/* SERVICE FORM */}
+        <Route
+          path="/"
+          element={
+            user ? (
+              <ServiceForm
+                onLogout={handleLogout}
+                user={user}
+              />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+
+      </Routes>
+    </HashRouter>
   );
 }
 

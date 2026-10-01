@@ -1,38 +1,1818 @@
-.App {
-  text-align: center;
+.haitianLogo {
+  width: 70% !important;
 }
 
-.App-logo {
-  height: 40vmin;
+.header_Service_Text {
+  font-size: 22px;
+  font-weight: bolder;
+}
+
+.haitianColor {
+  color: #0d3884 !important;
+}
+
+.signature-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0D3884;
+}
+
+.signatureborder {
+  border: 2px solid #0d3884 !important;
+  background: #ffffff;
+  border-radius: 10px;
+  display: block;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* ========================================================= */
+/* VIEW FORM CHECKBOXES                                      */
+/* ========================================================= */
+.view-checkbox-group {
+  width: 100% !important;
+  display: block !important;
+}
+
+.view-checkbox-group .ant-checkbox-wrapper {
+  width: 100%;
+  min-width: 0;
+  margin-inline-start: 0 !important;
+  margin-inline-end: 0 !important;
+  color: #222222 !important;
+  font-weight: 500;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.view-checkbox-group .ant-checkbox-inner {
+  border-color: #0d3884 !important;
+  background-color: #ffffff !important;
+}
+
+.view-checkbox-group .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #0d3884 !important;
+  border-color: #0d3884 !important;
+}
+
+.view-checkbox-group {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.view-checkbox-options {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.view-checkbox-options .ant-checkbox-wrapper {
+  min-width: 0;
+  width: 100%;
+}
+
+/* ========================================================= */
+/* HAITIAN SAVE BUTTON                                      */
+/* ========================================================= */
+.haitianbutton {
+  background-color: #0d3884 !important;
+  border-color: #0d3884 !important;
+  color: #ffffff !important;
+  transition: all 0.2s ease !important;
+}
+
+.haitianbutton:hover {
+  color: #0d3884 !important;
+  border-color: #0d3884 !important;
+  background-color: #ffffff !important;
+}
+
+.haitianbutton:focus {
+  background-color: #0d3884 !important;
+  border-color: #0d3884 !important;
+  color: #ffffff !important;
+}
+
+/* ========================================================= */
+/* CLEAR BUTTON                                             */
+/* ========================================================= */
+.dangerbutton {
+  background-color: #ff4d4f !important;
+  border-color: #ff4d4f !important;
+  color: #ffffff !important;
+  transition: all 0.2s ease !important;
+}
+
+.dangerbutton:hover {
+  background-color: #ffffff !important;
+  border-color: #d9363e !important;
+  color: #d9363e !important;
+}
+
+.dangerbutton:focus {
+  background-color: #d9363e !important;
+  border-color: #d9363e !important;
+  color: #ffffff !important;
+}
+
+/* ========================================================= */
+/* SAVE REPORT BUTTON                                       */
+/* ========================================================= */
+.save-report-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.save-report-button {
+  width: min(500px, 100%) !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  height: 52px !important;
+  padding: 0 30px !important;
+  background-color: #0d3884 !important;
+  border-color: #0d3884 !important;
+  color: #ffffff !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.save-report-button:hover {
+  background-color: #ffffff !important;
+  border-color: #0d3884 !important;
+  color: #0d3884 !important;
+}
+
+.loginButton {
+  width: 100% !important;
+  background-color: #0d3884 !important;
+  font-family: "Poppins", sans-serif !important;
+  color: white !important;
+  font-size: 20px !important;
+  border: none !important;
+  border-radius: 6px;
+  padding: 12px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  will-change: transform;
+}
+
+.loginButton:hover {
+  transform: scale(1.02);
+}
+
+.loginContainer {
+  width: 50% !important;
+  max-width: 100%;
+}
+
+/* ========================================================= */
+/* GLOBAL RESPONSIVE FOUNDATION                              */
+/* ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+img,
+canvas,
+svg,
+video {
+  max-width: 100%;
+}
+
+.service-form-page {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 40px 40px;
+  overflow-x: hidden;
+}
+
+.service-form-page .row,
+.service-report-view-modal .row {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.service-form-page .row > [class*="col-"],
+.service-report-view-modal .row > [class*="col-"] {
+  min-width: 0;
+}
+
+.service-form-page .ant-form,
+.service-form-page .ant-form-item,
+.service-form-page .ant-form-item-control,
+.service-form-page .ant-form-item-control-input,
+.service-form-page .ant-form-item-control-input-content {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.service-form-page .ant-input,
+.service-form-page .ant-input-number,
+.service-form-page .ant-select,
+.service-form-page .ant-picker,
+.service-form-page .ant-input-affix-wrapper,
+.service-form-page .ant-auto-complete,
+.service-form-page textarea {
+  max-width: 100%;
+}
+
+.service-form-page .ant-select,
+.service-form-page .ant-input-number,
+.service-form-page .ant-picker,
+.service-form-page .ant-auto-complete {
+  width: 100%;
+}
+
+.service-form-page textarea {
+  resize: vertical;
+  max-width: 100%;
+}
+
+/* ========================================================= */
+/* HEADER                                                    */
+/* ========================================================= */
+.service-form-header {
+  position: relative;
+  width: 100%;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.service-form-header-logo-wrap {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.service-form-header-logo {
+  width: 180px;
+  max-width: 25vw;
+  height: auto;
+}
+
+.service-form-header-number {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: center;
+}
+
+.service-form-header-number p {
+  margin: 0;
+  color: #0D3884;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.service-form-header-user {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* ========================================================= */
+/* CHECKBOX OPTION GROUPS                                   */
+/* ========================================================= */
+.service-category-options,
+.machine-trial-options,
+.further-action-options,
+.commercial-classification-options {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.service-category-options .ant-checkbox-wrapper,
+.machine-trial-options .ant-checkbox-wrapper,
+.further-action-options .ant-checkbox-wrapper,
+.commercial-classification-options .ant-checkbox-wrapper {
+  min-width: 0;
+  max-width: 100%;
+  margin-inline-start: 0 !important;
+  margin-inline-end: 0 !important;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* ========================================================= */
+/* TABLES                                                   */
+/* ========================================================= */
+.parts-table-responsive,
+.report-table-responsive,
+.view-parts-table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.parts-table-responsive .ant-table,
+.view-parts-table-responsive .ant-table {
+  min-width: 700px;
+}
+
+.report-table-responsive .ant-table {
+  min-width: 1000px;
+}
+
+.service-form-page .ant-table-wrapper,
+.service-report-view-modal .ant-table-wrapper {
+  max-width: 100%;
+}
+
+.service-form-page .ant-table-cell,
+.service-report-view-modal .ant-table-cell {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.service-form-page .ant-table-cell .ant-form-item {
+  margin-bottom: 0 !important;
+}
+
+/* ========================================================= */
+/* SIGNATURES                                               */
+/* ========================================================= */
+.signatureborder {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  touch-action: none;
+}
+
+.signatureborder canvas {
+  display: block;
+  max-width: 100%;
+  height: auto !important;
+}
+
+.signature-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ========================================================= */
+/* VIEW MODAL                                               */
+/* ========================================================= */
+.service-report-view-modal {
+  max-width: calc(100vw - 16px) !important;
+}
+
+.service-report-view-modal .ant-modal {
+  max-width: calc(100vw - 16px);
+  margin: 8px auto;
+}
+
+.service-report-view-modal .ant-modal-content {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.service-report-view-modal .ant-modal-body {
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+.service-report-view-modal .ant-input,
+.service-report-view-modal textarea {
+  max-width: 100%;
+}
+
+.service-report-view-modal .view-checkbox-options {
+  width: 100% !important;
+  max-width: 100%;
+  min-width: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.service-report-view-modal .view-checkbox-options .ant-checkbox-wrapper {
+  min-width: 0;
+  width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.service-report-view-modal .ant-checkbox-group > div[style*="grid-template-columns"] {
+  width: 100% !important;
+  max-width: 100%;
+  min-width: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.service-report-view-modal .ant-table-wrapper {
+  max-width: 100%;
+}
+
+.service-report-view-modal .ant-table-content,
+.service-report-view-modal .ant-table-body {
+  overflow-x: auto !important;
+}
+
+.service-report-view-modal .ant-table {
+  min-width: 650px;
+}
+
+.view-close-button {
+  min-width: 400px;
+  max-width: 100%;
+}
+
+/* ============================================================
+   VIEW MODAL - CLOSE BUTTON
+   ============================================================ */
+
+.service-report-view-modal .view-close-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 160px;
+  height: 44px;
+
+  padding: 0 26px;
+
+  background: #0D3884 !important;
+  border: 1px solid #0D3884 !important;
+  border-radius: 6px !important;
+
+  color: #FFFFFF !important;
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  box-shadow: 0 3px 8px rgba(13, 56, 132, 0.18);
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+
+/* Hover */
+.service-report-view-modal .view-close-button:hover {
+  background: #0A2E70 !important;
+  border-color: #0A2E70 !important;
+  color: #FFFFFF !important;
+
+  box-shadow: 0 5px 12px rgba(13, 56, 132, 0.25);
+
+  transform: translateY(-1px);
+}
+
+
+/* Focus */
+.service-report-view-modal .view-close-button:focus {
+  background: #0A2E70 !important;
+  border-color: #0A2E70 !important;
+  color: #FFFFFF !important;
+
+  box-shadow: 0 0 0 3px rgba(13, 56, 132, 0.15);
+}
+
+
+/* Active / Click */
+.service-report-view-modal .view-close-button:active {
+  background: #08275E !important;
+  border-color: #08275E !important;
+  color: #FFFFFF !important;
+
+  transform: translateY(1px);
+
+  box-shadow: 0 2px 5px rgba(13, 56, 132, 0.18);
+}
+
+/* ========================================================= */
+/* EDIT FORM - LARGE ACTION BUTTONS                          */
+/* ========================================================= */
+
+.edit-form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 32px;
+  padding-top: 22px;
+  width: 100%;
+  border-top: 1px solid #d9e2ea;
+}
+
+/* ========================================================= */
+/* CANCEL BUTTON                                             */
+/* ========================================================= */
+
+.edit-cancel-button {
+  width: 280px !important;
+  min-width: 280px !important;
+  height: 52px !important;
+
+  padding: 0 32px !important;
+
+  background: #ffffff !important;
+  border: 2px solid #0d3884 !important;
+  border-radius: 7px !important;
+
+  color: #0d3884 !important;
+
+  font-size: 17px !important;
+  font-weight: 600 !important;
+
+  box-shadow: none !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  transition: all 0.2s ease !important;
+}
+
+.edit-cancel-button:hover {
+  background: #0d3884 !important;
+  border-color: #0d3884 !important;
+  color: #ffffff !important;
+}
+
+
+/* ========================================================= */
+/* SAVE CHANGES BUTTON                                       */
+/* ========================================================= */
+
+.edit-save-button {
+  width: 280px !important;
+  min-width: 280px !important;
+  height: 52px !important;
+
+  padding: 0 34px !important;
+
+  background: #0d3884 !important;
+  border: 2px solid #0d3884 !important;
+  border-radius: 7px !important;
+
+  color: #ffffff !important;
+
+  font-size: 17px !important;
+  font-weight: 600 !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-shadow: 0 4px 10px rgba(13, 56, 132, 0.20) !important;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease !important;
+}
+
+.edit-save-button:hover {
+  background: #092e70 !important;
+  border-color: #092e70 !important;
+  color: #ffffff !important;
+
+  box-shadow: 0 6px 14px rgba(13, 56, 132, 0.28) !important;
+
+  transform: translateY(-1px);
+}
+
+.edit-save-button:focus {
+  background: #0d3884 !important;
+  border-color: #0d3884 !important;
+  color: #ffffff !important;
+}
+
+.edit-save-button:active {
+  background: #08275e !important;
+  border-color: #08275e !important;
+  color: #ffffff !important;
+
+  transform: translateY(1px);
+}
+
+
+/* ========================================================= */
+/* LOADING STATE                                              */
+/* ========================================================= */
+
+.edit-save-button.ant-btn-loading {
+  opacity: 0.85;
+}
+
+/* ========================================================= */
+/* FETCHED SERVICE REPORTS SECTION                           */
+/* ========================================================= */
+
+.fetched-service-reports-section {
+  width: 100%;
+  margin-top: 32px;
+}
+
+/* Section heading */
+.fetched-service-reports-heading {
+  width: 100%;
+  background: #0d3884;
+  color: #ffffff;
+
+  font-size: 20px;  
+  font-weight: 700;
+
+  padding: 11px 16px;
+
+  border-radius: 6px 6px 0 0;
+
+  letter-spacing: 0.2px;
+
+  box-sizing: border-box;
+}
+
+/* Table container */
+.fetched-service-reports-table {
+  width: 100%;
+  max-width: 100%;
+
+  overflow-x: auto;
+
+  border-left: 1px solid #d9e2ea;
+  border-right: 1px solid #d9e2ea;
+  border-bottom: 1px solid #d9e2ea;
+}
+
+/* ========================================================= */
+/* LARGE DESKTOP                                            */
+/* ========================================================= */
+@media (min-width: 1200px) {
+  .service-form-page {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .service-category-options,
+  .machine-trial-options,
+  .further-action-options,
+  .commercial-classification-options {
+    gap: 35px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ========================================================= */
+/* LAPTOP                                                   */
+/* ========================================================= */
+@media (max-width: 1199.98px) {
+  .service-form-page {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .service-form-header-logo {
+    width: 150px;
+  }
+
+  .service-form-header-number p {
+    font-size: 18px;
+  }
+
+  .service-category-options,
+  .machine-trial-options,
+  .further-action-options,
+  .commercial-classification-options {
+    gap: 20px;
+  }
+
+  .service-report-view-modal .view-checkbox-options,
+  .service-report-view-modal .ant-checkbox-group > div[style*="grid-template-columns"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ========================================================= */
+/* TABLET                                                   */
+/* ========================================================= */
+@media (max-width: 991.98px) {
+  .service-form-page {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+  }
+
+  .service-form-header {
+    min-height: 80px;
+    gap: 12px;
+  }
+
+  .service-form-header-logo {
+    width: 125px;
+    max-width: 20vw;
+  }
+
+  .service-form-header-number p {
+    font-size: 17px;
+  }
+
+  .service-category-options,
+  .machine-trial-options,
+  .further-action-options,
+  .commercial-classification-options {
+    gap: 12px;
+  }
+
+  .save-report-button {
+    width: 80% !important;
+  }
+}
+
+/* ========================================================= */
+/* MOBILE                                                   */
+/* ========================================================= */
+@media (max-width: 767.98px) {
+  .service-form-page {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 25px;
+  }
+
+  .service-form-header {
+    min-height: auto;
+    padding: 12px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px;
+  }
+
+  .service-form-header-logo-wrap,
+  .service-form-header-number,
+  .service-form-header-user {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .service-form-header-logo {
+    width: 150px;
+    max-width: 65vw;
+  }
+
+  .service-form-header-number p {
+    font-size: 17px;
+  }
+
+  .service-form-page .ant-form-item {
+    margin-bottom: 16px;
+  }
+
+  .service-form-page .ant-form-item-label {
+    padding-bottom: 5px;
+  }
+
+  .service-form-page .ant-form-item-label > label {
+    height: auto;
+    white-space: normal;
+    line-height: 1.4;
+  }
+
+  .service-category-options,
+  .machine-trial-options,
+  .further-action-options,
+  .commercial-classification-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .service-category-options .ant-checkbox-wrapper,
+  .machine-trial-options .ant-checkbox-wrapper,
+  .further-action-options .ant-checkbox-wrapper,
+  .commercial-classification-options .ant-checkbox-wrapper {
+    width: 100%;
+  }
+
+  .parts-table-responsive .ant-table {
+    min-width: 720px;
+  }
+
+  .report-table-responsive .ant-table {
+    min-width: 1000px;
+  }
+
+  .signatureborder {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .signatureborder canvas {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .signature-buttons {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .save-report-button {
+    width: 100% !important;
+    height: 50px !important;
+    font-size: 16px !important;
+  }
+
+  .service-report-view-modal .ant-modal {
+    width: calc(100vw - 12px) !important;
+    max-width: calc(100vw - 12px) !important;
+    margin: 6px auto;
+  }
+
+  .service-report-view-modal .ant-modal-body {
+    padding: 12px;
+  }
+
+  .service-report-view-modal .view-checkbox-options,
+  .service-report-view-modal .ant-checkbox-group > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+
+  .service-report-view-modal .ant-table {
+    min-width: 650px;
+  }
+
+  .service-report-view-modal h2 {
+    font-size: 19px !important;
+    line-height: 1.3;
+  }
+
+  .service-report-view-modal img {
+    max-width: 220px !important;
+    max-height: 60px !important;
+  }
+}
+
+/* ========================================================= */
+/* SMALL MOBILE                                             */
+/* ========================================================= */
+@media (max-width: 575.98px) {
+  .service-form-page {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .service-form-header-logo {
+    width: 135px;
+  }
+
+  .service-form-header-number p {
+    font-size: 15px;
+  }
+
+  .service-form-page .ant-input,
+  .service-form-page .ant-input-number,
+  .service-form-page .ant-select-selector {
+    font-size: 14px;
+  }
+
+  .service-form-page .ant-btn {
+    min-height: 40px;
+  }
+
+  .signature-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .signature-buttons .ant-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .service-report-view-modal .ant-modal-body {
+    padding: 9px;
+  }
+
+  .service-report-view-modal .ant-form-item {
+    margin-bottom: 13px;
+  }
+
+  .view-close-button {
+    width: 100%;
+  }
+
+    .service-report-view-modal .view-close-button {
+    width: 100%;
+    height: 44px;
+
+    font-size: 14px;
+  }
+}
+
+/* ========================================================= */
+/* VERY SMALL PHONES                                        */
+/* ========================================================= */
+@media (max-width: 399.98px) {
+  .service-form-page {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .service-form-header-logo {
+    width: 120px;
+  }
+
+  .service-form-header-number p {
+    font-size: 14px;
+  }
+
+  .service-form-page .ant-form-item-label > label {
+    font-size: 13px;
+  }
+
+  .service-form-page .ant-input,
+  .service-form-page .ant-select-selector,
+  .service-form-page .ant-input-number-input {
+    font-size: 13px;
+  }
+
+  .signature-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .signature-buttons .ant-btn {
+    width: 100%;
+  }
+
+  .service-report-view-modal h2 {
+    font-size: 17px !important;
+  }
+
+  .service-report-view-modal img {
+    max-width: 180px !important;
+  }
+}
+
+/* ========================================================= */
+/* MOBILE LANDSCAPE                                         */
+/* ========================================================= */
+@media (max-width: 767.98px) and (orientation: landscape) {
+  .service-form-header {
+    grid-template-columns: auto 1fr auto;
+    min-height: 70px;
+    padding: 8px 0;
+  }
+
+  .service-form-header-logo-wrap,
+  .service-form-header-number,
+  .service-form-header-user {
+    width: auto;
+  }
+
+  .service-form-header-logo {
+    width: 110px;
+  }
+
+  .service-form-header-number p {
+    font-size: 15px;
+  }
+
+  .service-category-options,
+  .machine-trial-options,
+  .further-action-options,
+  .commercial-classification-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ========================================================= */
+/* TOUCH DEVICES                                            */
+/* ========================================================= */
+@media (hover: none) and (pointer: coarse) {
+  .service-form-page .ant-btn {
+    min-height: 42px;
+  }
+
+  .service-form-page .ant-input,
+  .service-form-page .ant-select-selector,
+  .service-form-page .ant-input-number {
+    min-height: 40px;
+  }
+
+  .service-form-page .ant-checkbox-wrapper {
+    min-height: 32px;
+    align-items: center;
+  }
+}
+
+/* ========================================================= */
+/* EXISTING LOGO CLASSES - RESPONSIVE                        */
+/* ========================================================= */
+@media (max-width: 2560px) {
+  .haitianLogo { width: 40% !important; }
+  .haitianTableLogo { width: 30% !important; }
+  .haitianViewEditFormLogo { width: 30% !important; }
+}
+
+@media (max-width: 1444px) {
+  .haitianLogo { width: 40% !important; }
+  .haitianTableLogo { width: 30% !important; }
+  .haitianViewEditFormLogo { width: 30% !important; }
+}
+
+@media (max-width: 1026px) {
+  .haitianLogo { width: 60% !important; }
+  .haitianTableLogo { width: 30% !important; }
+  .haitianViewEditFormLogo { width: 30% !important; }
+}
+
+@media (max-width: 768px) {
+  .haitianViewEditFormLogo { width: 30% !important; }
+  .haitianLogo { width: 60% !important; }
+  .haitianTableLogo { width: 30% !important; }
+  .submitbutton { width: 50%; }
+  .editsubmitbutton { width: 30%; }
+  .loginContainer { width: 70% !important; }
+}
+
+@media (max-width: 427px) {
+  .haitianLogo { width: 70% !important; }
+  .loginContainer { width: 100% !important; }
+}
+
+@media (max-width: 377px) {
+  .haitianLogo { width: 70% !important; }
+  .loginContainer { width: 100% !important; }
+}
+
+@media (max-width: 326px) {
+  .haitianLogo { width: 70% !important; }
+  .loginContainer { width: 100% !important; }
+}
+
+/* ============================================================
+   HAITIAN SERVICE REPORT DATA TABLE - PREMIUM UI
+   ============================================================ */
+
+.fetched-service-reports-section {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 42px !important;
+  padding-top: 0 !important;
+}
+
+.fetched-service-reports-card {
+  width: 100%;
+  max-width: 100%;
+  background: #ffffff;
+  border: 1px solid #dbe4ec;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(13, 56, 132, 0.08);
+}
+
+/* ---------- Header ---------- */
+
+.fetched-service-reports-heading {
+  min-height: 82px;
+  width: 100%;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background:
+    linear-gradient(135deg, #0d3884 0%, #174f9f 58%, #2367b7 100%);
+  color: #ffffff;
+}
+
+.fetched-service-reports-heading-main {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.fetched-service-reports-heading-icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.24);
+  border-radius: 11px;
+  background: rgba(255,255,255,0.13);
+  font-size: 20px;
+}
+
+.fetched-service-reports-title {
+  font-size: 19px;
+  line-height: 1.25;
+  font-weight: 750;
+  letter-spacing: 0.35px;
+}
+
+.fetched-service-reports-subtitle {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: 0.86;
+  font-weight: 400;
+}
+
+.fetched-service-reports-count {
+  flex: 0 0 auto;
+  min-width: 112px;
+  padding: 7px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.12);
 }
 
-.App-link {
-  color: #61dafb;
+.fetched-service-reports-count-label {
+  font-size: 9px;
+  line-height: 1.2;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+  opacity: 0.85;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.fetched-service-reports-count strong {
+  margin-top: 2px;
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* ---------- Toolbar ---------- */
+
+.fetched-service-reports-toolbar {
+  width: 100%;
+  min-height: 74px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: #f7fafd;
+  border-bottom: 1px solid #e3eaf0;
+}
+
+.service-report-search-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 240px;
+  max-width: 760px;
+}
+
+.service-report-search-icon {
+  position: absolute;
+  z-index: 2;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0d3884;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.service-report-search-input {
+  width: 100%;
+  height: 42px !important;
+  padding-left: 40px !important;
+  border: 1px solid #cbd8e4 !important;
+  border-radius: 9px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease;
+}
+
+.service-report-search-input:hover,
+.service-report-search-input:focus {
+  border-color: #0d3884 !important;
+  box-shadow: 0 0 0 3px rgba(13,56,132,0.08) !important;
+}
+
+.service-report-toolbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.service-report-page-size {
+  height: 42px;
+  padding: 0 6px 0 11px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #cbd8e4;
+  border-radius: 9px;
+  background: #ffffff;
+}
+
+.service-report-page-size > span {
+  color: #526273;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.service-report-page-size .ant-select {
+  width: 64px;
+}
+
+.service-report-page-size .ant-select-selector {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.service-report-refresh-button,
+.service-report-clear-button {
+  height: 42px !important;
+  border-radius: 9px !important;
+  font-weight: 600 !important;
+  padding: 0 14px !important;
+}
+
+.service-report-refresh-button {
+  color: #ffffff !important;
+  background: #0d3884 !important;
+  border-color: #0d3884 !important;
+  box-shadow: 0 3px 9px rgba(13,56,132,0.16);
+}
+
+.service-report-refresh-button:hover,
+.service-report-refresh-button:focus {
+  color: #ffffff !important;
+  background: #092e70 !important;
+  border-color: #092e70 !important;
+}
+
+.service-report-clear-button {
+  color: #0d3884 !important;
+  background: #ffffff !important;
+  border-color: #c7d5e1 !important;
+}
+
+.service-report-clear-button:hover {
+  color: #0d3884 !important;
+  border-color: #0d3884 !important;
+}
+
+/* ---------- Information bar ---------- */
+
+.service-report-table-info-bar {
+  min-height: 38px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #647383;
+  background: #ffffff;
+  border-bottom: 1px solid #e5ebf0;
+  font-size: 11px;
+}
+
+.service-report-table-info-bar strong {
+  color: #0d3884;
+  font-weight: 700;
+}
+
+/* ---------- Table ---------- */
+
+.fetched-service-reports-table {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border: 0 !important;
+  background: #ffffff;
+}
+
+.fetched-service-reports-table .ant-table-wrapper {
+  width: 100%;
+}
+
+.fetched-service-reports-table .ant-table {
+  font-size: 14px !important;
+  color: #243342;
+  background: #ffffff;
+}
+
+.fetched-service-reports-table .ant-table-container {
+  border: 0 !important;
+}
+
+/* Larger, clearer table header text */
+.fetched-service-reports-table .ant-table-thead > tr > th {
+  height: 58px;
+  padding: 14px 14px !important;
+  color: #ffffff !important;
+  background: #0d3884 !important;
+  border-bottom: 1px solid #0a2f70 !important;
+  border-inline-end: 1px solid rgba(255,255,255,0.18) !important;
+  font-size: 14px !important;
+  line-height: 1.3;
+  font-weight: 700 !important;
+  letter-spacing: 0.15px;
+  white-space: nowrap;
+}
+
+.fetched-service-reports-table .ant-table-thead > tr > th .ant-table-column-sorter,
+.fetched-service-reports-table .ant-table-thead > tr > th .ant-table-filter-trigger {
+  color: rgba(255,255,255,0.85);
+}
+
+.fetched-service-reports-table .ant-table-thead > tr > th.ant-table-cell-fix-left,
+.fetched-service-reports-table .ant-table-thead > tr > th.ant-table-cell-fix-right {
+  background: #0d3884 !important;
+}
+
+.fetched-service-reports-table .ant-table-tbody > tr > td {
+  height: 58px;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  border-bottom: 1px solid #e8edf2 !important;
+  border-inline-end: 1px solid #edf1f5 !important;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.fetched-service-reports-table .ant-table-tbody > tr.service-report-table-row-even > td {
+  background: #ffffff;
+}
+
+.fetched-service-reports-table .ant-table-tbody > tr.service-report-table-row-odd > td {
+  background: #f8fbfd;
+}
+
+.fetched-service-reports-table .ant-table-tbody > tr:hover > td,
+.fetched-service-reports-table .ant-table-tbody > tr.service-report-table-row-even:hover > td,
+.fetched-service-reports-table .ant-table-tbody > tr.service-report-table-row-odd:hover > td {
+  background: #eef5fc !important;
+}
+
+.fetched-service-reports-table .ant-table-cell-fix-left,
+.fetched-service-reports-table .ant-table-cell-fix-right {
+  z-index: 3;
+}
+
+.fetched-service-reports-table .ant-table-tbody > tr > td.ant-table-cell-fix-left,
+.fetched-service-reports-table .ant-table-tbody > tr > td.ant-table-cell-fix-right {
+  background: inherit;
+}
+
+.fetched-service-reports-table .ant-table-tbody > tr:hover > td.ant-table-cell-fix-left,
+.fetched-service-reports-table .ant-table-tbody > tr:hover > td.ant-table-cell-fix-right {
+  background: #eef5fc !important;
+}
+
+/* ---------- Report number badge ---------- */
+
+.service-report-number-cell {
+  display: flex;
+  align-items: center;
+}
+
+.service-report-number-badge {
+  min-width: 100px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  border: 1px solid #b9cce0;
+  border-radius: 8px;
+  background: #edf4fb;
+  color: #0d3884;
+  font-size: 14px !important;
+  font-weight: 750;
+  letter-spacing: 0.2px;
+}
+
+/* ---------- Actions ---------- */
+
+.service-report-table-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: max-content;
+}
+
+.service-report-table-actions .ant-btn {
+  height: 42px !important;
+  min-width: 92px !important;
+  padding: 0 14px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+  font-weight: 650 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px;
+}
+
+.service-report-table-actions .ant-btn .anticon {
+  font-size: 15px !important;
+}
+
+.service-report-view-action {
+  color: #0d3884 !important;
+  background: #eef5fc !important;
+  border-color: #bfd1e2 !important;
+}
+
+.service-report-view-action:hover,
+.service-report-view-action:focus {
+  color: #ffffff !important;
+  background: #0d3884 !important;
+  border-color: #0d3884 !important;
+}
+
+.service-report-edit-action {
+  color: #ffffff !important;
+  background: #0d3884 !important;
+  border-color: #0d3884 !important;
+}
+
+.service-report-edit-action:hover,
+.service-report-edit-action:focus {
+  color: #ffffff !important;
+  background: #092e70 !important;
+  border-color: #092e70 !important;
+}
+
+/* ---------- Pagination ---------- */
+
+.fetched-service-reports-table .ant-table-pagination {
+  margin: 0 !important;
+  padding: 13px 16px !important;
+  border-top: 1px solid #e4ebf1;
+  background: #f7fafd;
+}
+
+.fetched-service-reports-table .ant-pagination-total-text {
+  color: #637383;
+  font-size: 11px;
+  margin-right: 12px;
+}
+
+.fetched-service-reports-table .ant-pagination-item {
+  border-radius: 7px;
+}
+
+.fetched-service-reports-table .ant-pagination-item-active {
+  border-color: #0d3884 !important;
+  background: #0d3884 !important;
+}
+
+.fetched-service-reports-table .ant-pagination-item-active a {
+  color: #ffffff !important;
+}
+
+.fetched-service-reports-table .ant-pagination-prev button,
+.fetched-service-reports-table .ant-pagination-next button {
+  border-radius: 7px;
+}
+
+/* ---------- Scrollbar ---------- */
+
+.fetched-service-reports-table .ant-table-body::-webkit-scrollbar,
+.fetched-service-reports-table .ant-table-content::-webkit-scrollbar {
+  height: 9px;
+}
+
+.fetched-service-reports-table .ant-table-body::-webkit-scrollbar-track,
+.fetched-service-reports-table .ant-table-content::-webkit-scrollbar-track {
+  background: #eef2f6;
+}
+
+.fetched-service-reports-table .ant-table-body::-webkit-scrollbar-thumb,
+.fetched-service-reports-table .ant-table-content::-webkit-scrollbar-thumb {
+  background: #aabccd;
+  border-radius: 10px;
+}
+
+.fetched-service-reports-table .ant-table-body::-webkit-scrollbar-thumb:hover,
+.fetched-service-reports-table .ant-table-content::-webkit-scrollbar-thumb:hover {
+  background: #7e96ad;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 991.98px) {
+  .fetched-service-reports-heading {
+    padding: 14px;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+/* =========================================================
+   TABLET - SERVICE REPORT TOOLBAR
+   768px to 991.98px
+   Search + Rows + Refresh stay in ONE ROW
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .fetched-service-reports-toolbar {
+    width: 100%;
+    min-height: 70px;
+    padding: 13px 16px;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    gap: 12px;
+  }
+
+  .service-report-search-wrap {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+  }
+
+  .service-report-search-input {
+    width: 100% !important;
+  }
+
+  .service-report-toolbar-actions {
+    flex: 0 0 auto !important;
+    width: auto !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .service-report-page-size {
+    flex: 0 0 auto;
+    width: auto !important;
+  }
+
+  .service-report-refresh-button,
+  .service-report-clear-button {
+    flex: 0 0 auto;
+    width: auto !important;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .fetched-service-reports-section {
+    margin-top: 28px !important;
+  }
+
+  .fetched-service-reports-heading {
+    min-height: auto;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .fetched-service-reports-count {
+    width: 100%;
+    min-width: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px 12px;
+  }
+
+  .fetched-service-reports-count strong {
+    margin-top: 0;
+  }
+
+  .fetched-service-reports-toolbar {
+    padding: 11px;
+  }
+
+  .service-report-toolbar-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .service-report-page-size,
+  .service-report-refresh-button,
+  .service-report-clear-button {
+    width: 100%;
+  }
+
+  .service-report-table-info-bar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 8px 11px;
+  }
+
+  .fetched-service-reports-table .ant-table-thead > tr > th {
+    height: 50px;
+    padding: 11px 12px !important;
+    font-size: 13px !important;
+  }
+
+  .fetched-service-reports-table .ant-table-tbody > tr > td {
+    height: 54px;
+    padding: 9px 12px !important;
+    font-size: 13px !important;
+  }
+
+  .service-report-table-actions .ant-btn {
+    height: 40px !important;
+    min-width: 88px !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .fetched-service-reports-title {
+    font-size: 16px;
+  }
+
+  .fetched-service-reports-subtitle {
+    font-size: 11px;
+  }
+
+  .service-report-toolbar-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ============================================================
+   SERVICE REPORT TABLE - FINAL READABILITY OVERRIDES
+   ============================================================ */
+
+.fetched-service-reports-table .ant-table-thead > tr > th,
+.fetched-service-reports-table .ant-table-thead > tr > th .ant-table-column-title {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.fetched-service-reports-table .ant-table-tbody > tr > td {
+  font-size: 14px !important;
+}
+
+.fetched-service-reports-table .service-report-table-actions .ant-btn,
+.fetched-service-reports-table .service-report-table-actions .ant-btn.ant-btn-sm {
+  height: 42px !important;
+  min-height: 42px !important;
+  min-width: 92px !important;
+  padding: 0 14px !important;
+  font-size: 14px !important;
+  font-weight: 650 !important;
+}
+
+.fetched-service-reports-table .service-report-table-actions .ant-btn .anticon {
+  font-size: 15px !important;
+}
+
+/* Keep the fixed Actions column wide enough for the larger buttons. */
+.fetched-service-reports-table .ant-table-cell-fix-right {
+  min-width: 210px;
+}
+
+@media (max-width: 767.98px) {
+  .fetched-service-reports-table .ant-table-thead > tr > th,
+  .fetched-service-reports-table .ant-table-thead > tr > th .ant-table-column-title {
+    font-size: 13px !important;
+  }
+
+  .fetched-service-reports-table .ant-table-tbody > tr > td {
+    font-size: 13px !important;
+  }
+
+  .fetched-service-reports-table .service-report-table-actions .ant-btn,
+  .fetched-service-reports-table .service-report-table-actions .ant-btn.ant-btn-sm {
+    height: 40px !important;
+    min-height: 40px !important;
+    min-width: 88px !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+  }
+
+  .fetched-service-reports-table .ant-table-cell-fix-right {
+    min-width: 200px;
+  }
+}
+
+
+/* =========================================================
+   FINAL TABLET TOOLBAR SAFEGUARD
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .fetched-service-reports-toolbar {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+
+  .fetched-service-reports-toolbar .service-report-search-wrap {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+
+  .fetched-service-reports-toolbar .service-report-toolbar-actions {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+  }
+
+  .fetched-service-reports-toolbar .service-report-page-size,
+  .fetched-service-reports-toolbar .service-report-refresh-button,
+  .fetched-service-reports-toolbar .service-report-clear-button {
+    width: auto !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+/* =========================================================
+   MOBILE TOOLBAR
+   <= 767.98px
+   Keep search and action controls stacked on phones
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+  .fetched-service-reports-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .service-report-search-wrap {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+
+  .service-report-toolbar-actions {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .service-report-page-size,
+  .service-report-refresh-button,
+  .service-report-clear-button {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .service-report-toolbar-actions {
+    grid-template-columns: 1fr !important;
   }
 }
