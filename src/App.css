@@ -451,6 +451,8 @@ video {
 .view-close-button {
   min-width: 400px;
   max-width: 100%;
+    padding: 0 30px;
+
 }
 
 /* ============================================================
@@ -463,9 +465,9 @@ video {
   justify-content: center;
 
   width: 160px;
-  height: 44px;
+  height: 52px;
 
-  padding: 0 26px;
+  padding: 0 30px;
 
   background: #0D3884 !important;
   border: 1px solid #0D3884 !important;
@@ -582,7 +584,7 @@ video {
   min-width: 280px !important;
   height: 52px !important;
 
-  padding: 0 34px !important;
+  padding: 0 30px !important;
 
   background: #0d3884 !important;
   border: 2px solid #0d3884 !important;
@@ -1117,8 +1119,7 @@ video {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  background:
-    linear-gradient(135deg, #0d3884 0%, #174f9f 58%, #2367b7 100%);
+  background: #0d3884;
   color: #ffffff;
 }
 
@@ -1171,7 +1172,7 @@ video {
 }
 
 .fetched-service-reports-count-label {
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.2;
   letter-spacing: 0.8px;
   font-weight: 700;
