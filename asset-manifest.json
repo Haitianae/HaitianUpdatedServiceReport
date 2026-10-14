@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/HaitianUpdatedServiceReport/static/css/main.b77921a1.css",
+    "main.js": "/HaitianUpdatedServiceReport/static/js/main.e51a616f.js",
+    "static/js/239.38efbdd8.chunk.js": "/HaitianUpdatedServiceReport/static/js/239.38efbdd8.chunk.js",
+    "static/js/977.a458af48.chunk.js": "/HaitianUpdatedServiceReport/static/js/977.a458af48.chunk.js",
+    "static/js/455.ef932025.chunk.js": "/HaitianUpdatedServiceReport/static/js/455.ef932025.chunk.js",
+    "static/js/453.14d64956.chunk.js": "/HaitianUpdatedServiceReport/static/js/453.14d64956.chunk.js",
+    "static/media/HaitianMachine.jpg": "/HaitianUpdatedServiceReport/static/media/HaitianMachine.5ba2f552cf24e5870a12.jpg",
+    "static/media/HaitianLogo.png": "/HaitianUpdatedServiceReport/static/media/HaitianLogo.ba239da0e4c810804bf9.png",
+    "static/media/HaitianLogoWhite.png": "/HaitianUpdatedServiceReport/static/media/HaitianLogoWhite.ca194f136ec2806ce8e0.png",
+    "index.html": "/HaitianUpdatedServiceReport/index.html",
+    "main.b77921a1.css.map": "/HaitianUpdatedServiceReport/static/css/main.b77921a1.css.map",
+    "main.e51a616f.js.map": "/HaitianUpdatedServiceReport/static/js/main.e51a616f.js.map",
+    "239.38efbdd8.chunk.js.map": "/HaitianUpdatedServiceReport/static/js/239.38efbdd8.chunk.js.map",
+    "977.a458af48.chunk.js.map": "/HaitianUpdatedServiceReport/static/js/977.a458af48.chunk.js.map",
+    "455.ef932025.chunk.js.map": "/HaitianUpdatedServiceReport/static/js/455.ef932025.chunk.js.map",
+    "453.14d64956.chunk.js.map": "/HaitianUpdatedServiceReport/static/js/453.14d64956.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b77921a1.css",
+    "static/js/main.e51a616f.js"
+  ]
+}
