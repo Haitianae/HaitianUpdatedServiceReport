@@ -7,6 +7,15 @@
   font-weight: bolder;
 }
 
+.newFormStyle{
+  padding: 5px;
+}
+
+.newFormStyleHeader{
+ 
+  background:none ;
+}
+
 .haitianColor {
   color: #0d3884 !important;
 }
@@ -208,6 +217,8 @@ video {
   width: 100%;
   max-width: 100%;
   padding: 0 40px 40px;
+            background: #f4f7fb;
+
   overflow-x: hidden;
 }
 
@@ -743,8 +754,8 @@ video {
   }
 
   .service-form-header-logo {
-    width: 125px;
-    max-width: 20vw;
+    width: 180px;
+    max-width: 25vw;
   }
 
   .service-form-header-number p {
@@ -1817,3 +1828,4 @@ video {
     grid-template-columns: 1fr !important;
   }
 }
+

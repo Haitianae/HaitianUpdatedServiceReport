@@ -1,0 +1,559 @@
+/* Haitian Service Report Login
+   Intentionally uses dark navy, charcoal and white only in the left panel.
+   The machine image is kept at full opacity; the overlay is restrained so it remains visible. */
+
+.haitian-login-page,
+.haitian-login-page * {
+  box-sizing: border-box;
+}
+
+.haitian-login-page {
+  --hsr-navy: #071326;
+  --hsr-deep-navy: #030a16;
+  --hsr-brand: #123c82;
+  --hsr-ink: #15243b;
+  --hsr-muted: #66758a;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 2.8vw, 36px);
+  background: #edf0f4;
+  color: var(--hsr-ink);
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+}
+
+.haitian-login-shell {
+  width: min(1260px, 100%);
+  min-height: min(750px, calc(100dvh - 48px));
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(420px, 0.96fr);
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 22px;
+  box-shadow: 0 24px 70px rgba(6, 19, 38, 0.16);
+}
+
+/* LEFT PANEL — photographic background, restrained monochrome overlay */
+.haitian-login-page .haitian-brand-panel {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  padding: 30px clamp(28px, 4vw, 54px) 24px;
+  color: #fff;
+}
+
+.haitian-login-page .haitian-banner-image {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 1;
+  filter: none;
+  pointer-events: none;
+}
+
+.haitian-login-page .haitian-banner-overlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  /* The image itself is dark navy. Avoid the heavy overlay that hid the machines before. */
+  background:
+    linear-gradient(180deg,
+      rgba(2, 8, 19, 0.48) 0%,
+      rgba(2, 8, 19, 0.23) 36%,
+      rgba(2, 8, 19, 0.48) 100%),
+    linear-gradient(90deg,
+      rgba(2, 8, 19, 0.34) 0%,
+      rgba(2, 8, 19, 0.14) 58%,
+      rgba(2, 8, 19, 0.24) 100%);
+}
+
+.haitian-login-page .brand-top,
+.haitian-login-page .brand-content,
+.haitian-login-page .brand-footer {
+  position: relative;
+  z-index: 2;
+}
+
+.haitian-login-page .brand-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 0 0 auto;
+  padding: 0;
+  margin: 0;
+}
+
+.haitian-login-page .brand-logo {
+  display: block;
+  width: clamp(220px, 25vw, 300px);
+  max-width: 92%;
+  max-height: 105px;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  filter: none;
+}
+
+.haitian-login-page .brand-content {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  margin: auto 0;
+  padding: clamp(24px, 3.8vh, 40px) 0 clamp(20px, 2.8vh, 30px);
+}
+
+.haitian-login-page .brand-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.haitian-login-page .brand-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  flex: 0 0 28px;
+  border-radius: 0;
+  background: #fff;
+}
+
+.haitian-login-page .brand-content h1 {
+  margin: 0 0 18px;
+  color: #fff;
+  font-size: clamp(35px, 3.55vw, 50px);
+  line-height: 1.1;
+  letter-spacing: -1.45px;
+  font-weight: 760;
+  text-wrap: balance;
+}
+
+/* No light-blue type or decoration in the brand panel. */
+.haitian-login-page .brand-content h1 span {
+  color: #fff;
+}
+
+.haitian-login-page .brand-content > p {
+  max-width: 450px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 14px;
+  line-height: 1.85;
+  font-weight: 400;
+}
+
+.haitian-login-page .brand-feature-list {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  max-width: 475px;
+  margin-top: 160px;
+  border-top: 1px solid rgba(255, 255, 255, 0.32);
+}
+
+.haitian-login-page .brand-feature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 62px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+  color: #fff;
+}
+
+.haitian-login-page .brand-feature-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.22);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.4px;
+}
+
+.haitian-login-page .brand-feature-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 3px;
+}
+
+.haitian-login-page .brand-feature-copy strong {
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.haitian-login-page .brand-feature-copy small {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+.haitian-login-page .brand-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex: 0 0 auto;
+  padding-top: 15px;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.6;
+  font-weight: 750;
+  letter-spacing: 1.55px;
+  text-align: center;
+}
+
+.haitian-login-page .brand-footer-line {
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  flex: 0 0 28px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* RIGHT PANEL — white form, dark readable type */
+.haitian-login-page .haitian-form-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(34px, 4vw, 62px) clamp(28px, 5vw, 72px) 28px;
+  background: #fff;
+}
+
+.haitian-login-page .haitian-login-card {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.haitian-login-page .login-brand-mark {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 26px;
+}
+
+.haitian-login-page .login-brand-mark span {
+  display: block;
+  width: 24px;
+  height: 4px;
+  border-radius: 2px;
+  background: #123c82;
+}
+
+.haitian-login-page .login-brand-mark span:nth-child(2) {
+  width: 12px;
+  background: #243146;
+}
+
+.haitian-login-page .login-brand-mark span:nth-child(3) {
+  width: 6px;
+  background: #6d7786;
+}
+
+.haitian-login-page .login-heading {
+  margin-bottom: 32px;
+}
+
+.haitian-login-page .login-overline {
+  display: block;
+  margin: 0 0 14px;
+  color: #123c82;
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.haitian-login-page .login-heading h2 {
+  margin: 0 0 12px;
+  color: #14243d;
+  font-size: clamp(35px, 3.15vw, 44px);
+  font-weight: 760;
+  line-height: 1.14;
+  letter-spacing: -1.25px;
+}
+
+.haitian-login-page .login-heading h2 span {
+  color: #123c82;
+}
+
+.haitian-login-page .login-heading p {
+  max-width: 360px;
+  margin: 0;
+  color: #5d6b7e;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.haitian-login-page .haitian-login-form {
+  width: 100%;
+}
+
+.haitian-login-page .haitian-login-form .ant-form-item {
+  margin-bottom: 21px;
+}
+
+.haitian-login-page .haitian-login-form .ant-form-item-label {
+  padding-bottom: 8px;
+}
+
+.haitian-login-page .haitian-login-form .ant-form-item-label > label {
+  height: auto;
+  color: #1b2a40;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 650;
+}
+
+/* Same fixed dimensions for email and password controls. */
+.haitian-login-page .haitian-login-form .ant-input,
+.haitian-login-page .haitian-login-form .ant-input-affix-wrapper {
+  width: 100%;
+  height: 56px;
+  min-height: 56px;
+  border: 1px solid #ccd5e0;
+  border-radius: 8px;
+  background: #fff;
+  color: #18263b;
+  box-shadow: none;
+  font-size: 15px;
+}
+
+.haitian-login-page .haitian-login-form input.ant-input {
+  padding: 0 16px;
+}
+
+.haitian-login-page .haitian-login-form .ant-input-affix-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 14px 0 0;
+}
+
+.haitian-login-page .haitian-login-form .ant-input-affix-wrapper input.ant-input {
+  height: 52px;
+  min-height: 52px;
+  padding: 0 0 0 16px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.haitian-login-page .haitian-login-form .ant-input-affix-wrapper .ant-input-suffix {
+  margin-left: 10px;
+}
+
+.haitian-login-page .haitian-login-form .ant-input::placeholder {
+  color: #8995a5;
+  font-size: 14px;
+}
+
+.haitian-login-page .haitian-login-form .ant-input:hover,
+.haitian-login-page .haitian-login-form .ant-input-affix-wrapper:hover {
+  border-color: #8a98aa;
+}
+
+.haitian-login-page .haitian-login-form .ant-input:focus,
+.haitian-login-page .haitian-login-form .ant-input-affix-wrapper-focused {
+  border-color: #123c82;
+  box-shadow: 0 0 0 3px rgba(18, 60, 130, 0.1);
+}
+
+.haitian-login-page .haitian-login-form .ant-form-item-explain-error {
+  margin-top: 5px;
+  color: #bd3038;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.haitian-login-page .haitian-login-button.ant-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  min-height: 56px;
+  margin-top: 5px;
+  padding: 0 48px 0 20px;
+  border: 1px solid #123c82;
+  border-radius: 8px;
+  background: #123c82;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 750;
+  box-shadow: 0 10px 22px rgba(10, 29, 61, 0.16);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.haitian-login-page .haitian-login-button.ant-btn:not(:disabled):hover {
+  border-color: #092d67;
+  background: #092d67;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 13px 25px rgba(10, 29, 61, 0.2);
+}
+
+.haitian-login-page .login-button-arrow {
+  position: absolute;
+  right: 19px;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.haitian-login-page .login-security-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 21px;
+  color: #59677b;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.haitian-login-page .login-security-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  border: 1px solid #9aa6b6;
+  border-radius: 50%;
+  color: #243146;
+  font-size: 11px;
+}
+
+.haitian-login-page .login-card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 7px 10px;
+  margin-top: clamp(32px, 5vh, 52px);
+  padding-top: 18px;
+  border-top: 1px solid #dce2e9;
+  color: #536176;
+  font-size: 11px;
+  line-height: 1.8;
+  font-weight: 500;
+  text-align: center;
+}
+
+.haitian-login-page .login-footer-separator {
+  color: #7b8797;
+}
+
+.haitian-login-page .login-entrance {
+  animation: hsrLoginEntrance 0.35s ease both;
+}
+
+@keyframes hsrLoginEntrance {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.haitian-login-page .login-shake {
+  animation: hsrLoginShake 0.36s ease-in-out;
+}
+
+@keyframes hsrLoginShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
+}
+
+@media (max-width: 1000px) {
+  .haitian-login-page { padding: 18px; }
+  .haitian-login-shell {
+    grid-template-columns: minmax(0, 1fr) minmax(350px, 0.95fr);
+    min-height: 680px;
+  }
+  .haitian-login-page .haitian-brand-panel { padding: 27px 30px 22px; }
+  .haitian-login-page .brand-content h1 { font-size: clamp(33px, 4vw, 43px); }
+  .haitian-login-page .haitian-form-panel { padding: 36px 30px 26px; }
+}
+
+@media (max-width: 760px) {
+  .haitian-login-page { display: block; padding: 12px; }
+  .haitian-login-shell {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 540px;
+    min-height: 0;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .haitian-login-page .haitian-brand-panel {
+    min-height: 500px;
+    padding: 24px 25px 20px;
+  }
+  .haitian-login-page .brand-logo { width: 220px; max-height: 82px; }
+  .haitian-login-page .brand-content { padding: 28px 0 24px; }
+  .haitian-login-page .brand-content h1 { font-size: clamp(32px, 7.5vw, 42px); }
+  .haitian-login-page .brand-content > p { font-size: 14px; }
+  .haitian-login-page .brand-feature-list { margin-top: 19px; }
+  .haitian-login-page .brand-feature { min-height: 58px; }
+  .haitian-login-page .haitian-form-panel { padding: 35px 25px 24px; }
+  .haitian-login-page .login-heading { margin-bottom: 27px; }
+  .haitian-login-page .login-heading h2 { font-size: 36px; }
+  .haitian-login-page .login-card-footer { margin-top: 32px; }
+}
+
+@media (max-width: 420px) {
+  .haitian-login-page .haitian-brand-panel { min-height: 470px; padding: 22px 19px 18px; }
+  .haitian-login-page .brand-logo { width: 195px; }
+  .haitian-login-page .brand-content h1 { font-size: 31px; letter-spacing: -0.8px; }
+  .haitian-login-page .brand-eyebrow { font-size: 10px; letter-spacing: 1.4px; }
+  .haitian-login-page .brand-content > p { font-size: 13px; line-height: 1.75; }
+  .haitian-login-page .brand-feature-copy strong { font-size: 12px; }
+  .haitian-login-page .brand-feature-copy small { font-size: 11px; }
+  .haitian-login-page .brand-footer { font-size: 9px; letter-spacing: 1px; }
+  .haitian-login-page .haitian-form-panel { padding: 29px 19px 22px; }
+  .haitian-login-page .login-heading h2 { font-size: 32px; }
+  .haitian-login-page .login-heading p { font-size: 13px; }
+  .haitian-login-page .login-card-footer { font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .haitian-login-page *,
+  .haitian-login-page *::before,
+  .haitian-login-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
