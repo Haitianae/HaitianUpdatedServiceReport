@@ -18,8 +18,8 @@ notification.config({
 });
 
 // Keep the existing backend endpoint and request format unchanged.
-const LOGIN_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbxPtFQDfu04zysazJwP5F5jiessPEZb0XaE8UYYLJ2LrVLRYXcxxOcpPW5Z4ccDABk1tA/exec";
+const GAS_URL =
+  "https://script.google.com/macros/s/AKfycbyGdsebBWo1LbOjHclpnFTi-Hb4fMBKIpPiZYOkW0h8z_DW4M7rcPjAc-vBxLhzGzWx/exec";
 
 export default function Login({ onLoginSuccess }) {
   const [form] = Form.useForm();
@@ -52,7 +52,7 @@ export default function Login({ onLoginSuccess }) {
     const timeoutId = window.setTimeout(() => controller.abort(), 20000);
 
     try {
-      const response = await fetch(LOGIN_ENDPOINT, {
+      const response = await fetch(GAS_URL, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
@@ -196,13 +196,8 @@ export default function Login({ onLoginSuccess }) {
 
         <section className="haitian-form-panel" aria-label="Sign in">
           <div className={`haitian-login-card ${shake ? "login-shake" : ""}`}>
-            <div className="login-brand-mark" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </div>
+        
             <div className="login-heading">
-              <span className="login-overline">HAITIAN SERVICE REPORT</span>
               <h2>Welcome back<span>.</span></h2>
               <p>Sign in with your company account to continue.</p>
             </div>
