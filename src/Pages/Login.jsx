@@ -19,7 +19,7 @@ notification.config({
 
 // Keep the existing backend endpoint and request format unchanged.
 const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbyGdsebBWo1LbOjHclpnFTi-Hb4fMBKIpPiZYOkW0h8z_DW4M7rcPjAc-vBxLhzGzWx/exec";
+  "https://script.google.com/macros/s/AKfycbyjYt3jIx-VVg0tp50AN0khR74N_vMFgvmtC9H5LbqkZlPSrsNT_lPIWGDjHoupyysKQQ/exec";
 
 export default function Login({ onLoginSuccess }) {
   const [form] = Form.useForm();
