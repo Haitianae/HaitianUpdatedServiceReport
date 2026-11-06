@@ -1829,3 +1829,77 @@ video {
   }
 }
 
+/* ============================================================
+   TABLET SERVICE REPORT TOOLBAR - FINAL WIDTH ADJUSTMENT
+   Row 1: Slightly narrower SRN search, wider general search
+   Row 2: Comfortable action button widths
+   Applies only to 768px–991.98px tablet layouts.
+   ============================================================ */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .fetched-service-reports-toolbar {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr) !important;
+    grid-template-rows: auto auto !important;
+    align-items: center !important;
+    justify-content: stretch !important;
+    gap: 14px 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .fetched-service-reports-toolbar > .service-report-search-wrap:nth-child(1) {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .fetched-service-reports-toolbar > .service-report-search-wrap:nth-child(2) {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .fetched-service-reports-toolbar .service-report-search-input {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .fetched-service-reports-toolbar > .service-report-toolbar-actions {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+
+  .fetched-service-reports-toolbar .service-report-toolbar-actions .ant-btn,
+  .fetched-service-reports-toolbar .service-report-toolbar-actions .service-report-refresh-button,
+  .fetched-service-reports-toolbar .service-report-toolbar-actions .service-report-clear-button {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 138px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    white-space: nowrap !important;
+  }
+
+  .fetched-service-reports-toolbar .service-report-page-size {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+}
+

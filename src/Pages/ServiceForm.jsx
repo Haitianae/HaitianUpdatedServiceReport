@@ -234,7 +234,7 @@ const technicianOptions = [
 // This must be the deployment containing getAllCustomerData.
 // ============================================================
 const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbyjYt3jIx-VVg0tp50AN0khR74N_vMFgvmtC9H5LbqkZlPSrsNT_lPIWGDjHoupyysKQQ/exec";
+  "https://script.google.com/macros/s/AKfycbzUtAoHWmuy4_cnHOPFDzYjglr9GwN_zJ8TSQcQoDzIYTf7gz3MxsTlzOZEBTdBaDed3w/exec";
 
 // ============================================================
 // CENTRAL GOOGLE APPS SCRIPT REQUEST HELPER
@@ -700,7 +700,7 @@ const pdfFieldCompactWithMoreGap = (
   doc.setDrawColor("#9FB6C7");
   doc.setLineWidth(0.28);
 
-  doc.line(x, y + height, x + width, y + height);
+  doc.line(x, y + height - 1.5, x + width, y + height - 1.5);
 
   // ------------------------------------------------------------
   // VALUE
@@ -715,7 +715,7 @@ const pdfFieldCompactWithMoreGap = (
   const lines = doc.splitTextToSize(valueText, width - 2);
 
   if (lines.length) {
-    doc.text(lines.slice(0, 2), x, y + 8.2);
+    doc.text(lines.slice(0, 2), x, y + 7);
   }
 };
 
@@ -762,81 +762,38 @@ const pdfCheckbox = (doc, x, y, isChecked, label, fontSize = 9) => {
   doc.text(pdfSafe(label), x + checkboxSize + 1.5, y + 3.4);
 };
 
-const pdfSignature = (doc, x, y, width, title, name, date, signature) => {
-  // ============================================================
-  // TITLE
-  // ============================================================
-
+const pdfSignature = (doc, x, y, width, title, name, signature) => {
+  // Signature title
   doc.setFont("helvetica", "bold");
   doc.setFontSize(9);
   doc.setTextColor(PDF_BLUE);
-
   doc.text(title, x + width / 2, y, { align: "center" });
 
-  // ============================================================
-  // NAME
-  // ============================================================
-
+  // Name box
   doc.setFillColor(PDF_LIGHT_BLUE);
   doc.setDrawColor(PDF_BORDER);
-
-  // Name box
   doc.rect(x, y + 3, width, 5, "FD");
-
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
   doc.setTextColor(PDF_TEXT);
-
   doc.text(pdfSafe(name), x + 1, y + 6.5);
 
   // Name label
   doc.setFontSize(9);
   doc.setTextColor("#555555");
-
   doc.text("Name", x, y + 12);
 
-  // ============================================================
-  // DATE
-  // ============================================================
-
-  doc.setFillColor(PDF_LIGHT_BLUE);
-
-  doc.rect(x, y + 16, width, 5, "FD");
-
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  doc.setTextColor(PDF_TEXT);
-
-  doc.text(pdfSafe(date), x + 1, y + 19.5);
-
-  // Date label
-  doc.setFontSize(9);
-  doc.setTextColor("#555555");
-
-  doc.text("Date", x, y + 24.5);
-
-  // ============================================================
-  // SIGNATURE BOX
-  // ============================================================
-
+  // Signature box (date field intentionally removed)
   doc.setFillColor("#FFFFFF");
   doc.setDrawColor(PDF_BORDER);
-
-  const signatureBoxY = y + 28;
+  const signatureBoxY = y + 16;
   const signatureBoxHeight = 25;
-
   doc.rect(x, signatureBoxY, width, signatureBoxHeight, "FD");
-
-  // ============================================================
-  // SIGNATURE IMAGE
-  // Keep completely inside the signature box
-  // ============================================================
 
   if (signature) {
     try {
       const signaturePaddingX = 1;
       const signaturePaddingY = 1;
-
       doc.addImage(
         signature,
         "PNG",
@@ -850,15 +807,10 @@ const pdfSignature = (doc, x, y, width, title, name, date, signature) => {
     }
   }
 
-  // ============================================================
-  // SIGNATURE / STAMP LABEL
-  // ============================================================
-
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
   doc.setTextColor("#555555");
-
-  doc.text("Signature / Stamp", x, y + 56);
+  doc.text("Signature / Stamp", x, y + 44);
 };
 
 const initializeZapfDingbats = (doc) => {
@@ -1057,7 +1009,7 @@ const generateServiceReportPDF = async (
   // SPACE BETWEEN SECTION 1 AND SECTION 2
   // ============================================================
 
-  y += 3;
+  y += 1;
 
   // ============================================================
   // 2. MACHINE INFORMATION
@@ -1100,7 +1052,7 @@ const generateServiceReportPDF = async (
   // SPACE BETWEEN SECTION 2 AND SECTION 3
   // ============================================================
 
-  y += 3;
+  y += 1;
 
   // ============================================================
   // 3. SERVICE CATEGORY
@@ -1146,7 +1098,7 @@ const generateServiceReportPDF = async (
   });
 
   // Space after Section 3
-  y += 17;
+  y += 15;
 
   // ============================================================
   // 4. CUSTOMER COMPLAINT
@@ -1154,23 +1106,21 @@ const generateServiceReportPDF = async (
 
   y = pdfSection(doc, "4. CUSTOMER COMPLAINT / REPORTED PROBLEM", y, margin);
 
-  y += 1.5;
-
-  pdfTextAreaPage1(doc, values.customerComplaint, margin, y, contentWidth, 20);
+  y += 0.1;
+  pdfTextAreaPage1(doc, values.customerComplaint, margin, y, contentWidth, 22);
 
   // ============================================================
   // SPACE BETWEEN SECTION 4 AND SECTION 5
   // ============================================================
 
-  y += 25;
+  y += 24;
 
   // ============================================================
   // 5. TECHNICIAN DIAGNOSIS
   // ============================================================
 
   y = pdfSection(doc, "5. TECHNICIAN DIAGNOSIS / ROOT CAUSE", y, margin);
-
-  y += 1.5;
+  y += 0.1;
 
   pdfTextAreaPage1(
     doc,
@@ -1178,14 +1128,14 @@ const generateServiceReportPDF = async (
     margin,
     y,
     contentWidth,
-    20,
+    33,
   );
 
   // ============================================================
   // SPACE BETWEEN SECTION 5 AND SECTION 6
   // ============================================================
 
-  y += 25;
+  y += 35;
 
   // ============================================================
   // 6. WORK PERFORMED
@@ -1193,9 +1143,9 @@ const generateServiceReportPDF = async (
 
   y = pdfSection(doc, "6. WORK PERFORMED / CORRECTIVE ACTION", y, margin);
 
-  y += 1.5;
+  y += 0.1;
 
-  pdfTextAreaPage1(doc, values.workPerformed, margin, y, contentWidth, 20);
+  pdfTextAreaPage1(doc, values.workPerformed, margin, y, contentWidth, 33);
 
   // ============================================================
   // PAGE 2
@@ -1214,7 +1164,7 @@ const generateServiceReportPDF = async (
 
   y = pdfSection(doc, "7. MACHINE TRIAL & FINAL STATUS", y, margin);
 
-  y += 2;
+  y += 1;
 
   const trialStatuses = [
     ["machineTestedSuccessfully", "Machine tested successfully"],
@@ -1273,7 +1223,7 @@ const generateServiceReportPDF = async (
     );
   });
 
-  y += 14;
+  y += 13.5;
 
   pdfFieldCompactWithMoreGap(
     doc,
@@ -1295,7 +1245,7 @@ const generateServiceReportPDF = async (
     9.5,
   );
 
-  y += 12;
+  y += 11.5;
 
   pdfFieldCompactWithMoreGap(
     doc,
@@ -1307,7 +1257,7 @@ const generateServiceReportPDF = async (
     9.5,
   );
 
-  y += 12;
+  y += 11;
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(9);
@@ -1315,9 +1265,9 @@ const generateServiceReportPDF = async (
 
   doc.text("Trial / Status Remarks", margin, y + 2);
 
-  pdfTextArea(doc, values.trialStatusRemarks, margin, y + 4, contentWidth, 12);
+  pdfTextArea(doc, values.trialStatusRemarks, margin, y + 4, contentWidth, 16);
 
-  y += 19;
+  y += 22.5;
 
   // ============================================================
   // 8. PARTS USED / RECOMMENDED
@@ -1368,7 +1318,7 @@ const generateServiceReportPDF = async (
     styles: {
       font: "helvetica",
       fontSize: 7.5,
-      cellPadding: 1.6,
+      cellPadding: 1,
       lineColor: "#B8C8D3",
       lineWidth: 0.25,
       textColor: PDF_TEXT,
@@ -1407,7 +1357,7 @@ const generateServiceReportPDF = async (
     },
   });
 
-  y = doc.lastAutoTable.finalY + 4;
+  y = doc.lastAutoTable.finalY + 2;
 
   // ============================================================
   // 9. FURTHER ACTION REQUIRED
@@ -1415,7 +1365,7 @@ const generateServiceReportPDF = async (
 
   y = pdfSection(doc, "9. FURTHER ACTION REQUIRED", y, margin);
 
-  y += 2;
+  y += 1.5;
 
   const furtherActions = [
     ["noFurtherAction", "No further action required"],
@@ -1478,24 +1428,24 @@ const generateServiceReportPDF = async (
     );
   });
 
-  y += 15;
+  y += 13;
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(9);
   doc.setTextColor(PDF_BLUE);
 
-  doc.text("Required Action / Follow-up", margin, y + 2);
+  doc.text("Required Action / Follow-up", margin, y + 4);
 
   pdfTextArea(
     doc,
     values.requiredActionFollowUp,
     margin,
-    y + 4,
+    y + 6,
     contentWidth,
-    12,
+    16,
   );
 
-  y += 19;
+  y += 25;
 
   // ============================================================
   // 10. SERVICE COMMERCIAL CLASSIFICATION
@@ -1541,27 +1491,27 @@ const generateServiceReportPDF = async (
   y += 17;
 
   // ============================================================
-  // 11. CUSTOMER ACKNOWLEDGEMENT
+  // 11. CUSTOMER REMARKS
   // ============================================================
 
-  y = pdfSection(doc, "11. CUSTOMER ACKNOWLEDGEMENT", y, margin);
+  y = pdfSection(doc, "11. CUSTOMER REMARKS", y, margin);
 
-  doc.setFillColor("#F1F6FA");
-
-  doc.rect(margin, y + 1, contentWidth, 8, "F");
+  doc.setFillColor("#FFFFFF");
+  doc.setDrawColor(PDF_BORDER);
+  doc.setLineWidth(0.28);
+  doc.rect(margin, y + 1, contentWidth, 18, "FD");
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
   doc.setTextColor(PDF_TEXT);
 
-  const acknowledgement =
-    "I acknowledge that the above service work has been carried out and the machine status / further action has been explained to us.";
-
+  const acknowledgement = pdfSafe(
+    values.customerRemarks || values.customerAcknowledgement || "",
+  );
   const ackLines = doc.splitTextToSize(acknowledgement, contentWidth - 6);
+  doc.text(ackLines.slice(0, 4), margin + 1.5, y + 4.5);
 
-  doc.text(ackLines.slice(0, 2), margin + 1.5, y + 6.2);
-
-  y += 15;
+  y += 24.5;
 
   // ============================================================
   // SIGNATURES
@@ -1582,7 +1532,6 @@ const generateServiceReportPDF = async (
     sigWidth,
     "Service Technician",
     values.technicianName,
-    values.technicianDate,
     signatureTechnician,
   );
 
@@ -1597,7 +1546,6 @@ const generateServiceReportPDF = async (
     sigWidth,
     "Service Manager",
     values.managerName,
-    values.managerDate,
     signatureManager,
   );
 
@@ -1612,7 +1560,6 @@ const generateServiceReportPDF = async (
     sigWidth,
     "Customer",
     values.customerName,
-    values.customerDate,
     signatureCustomer,
   );
 
@@ -1839,7 +1786,7 @@ const generateEditServiceReportPDF = async (
   // SPACE BETWEEN SECTION 1 AND SECTION 2
   // ============================================================
 
-  y += 3;
+  y += 1;
 
   // ============================================================
   // 2. MACHINE INFORMATION
@@ -1882,7 +1829,7 @@ const generateEditServiceReportPDF = async (
   // SPACE BETWEEN SECTION 2 AND SECTION 3
   // ============================================================
 
-  y += 3;
+  y += 1;
 
   // ============================================================
   // 3. SERVICE CATEGORY
@@ -1928,7 +1875,7 @@ const generateEditServiceReportPDF = async (
   });
 
   // Space after Section 3
-  y += 17;
+  y += 15;
 
   // ============================================================
   // 4. CUSTOMER COMPLAINT
@@ -1936,15 +1883,15 @@ const generateEditServiceReportPDF = async (
 
   y = pdfSection(doc, "4. CUSTOMER COMPLAINT / REPORTED PROBLEM", y, margin);
 
-  y += 1.5;
+  y += 0.1;
 
-  pdfTextAreaPage1(doc, values.customerComplaint, margin, y, contentWidth, 20);
+  pdfTextAreaPage1(doc, values.customerComplaint, margin, y, contentWidth, 22);
 
   // ============================================================
   // SPACE BETWEEN SECTION 4 AND SECTION 5
   // ============================================================
 
-  y += 25;
+  y += 24;
 
   // ============================================================
   // 5. TECHNICIAN DIAGNOSIS
@@ -1952,7 +1899,7 @@ const generateEditServiceReportPDF = async (
 
   y = pdfSection(doc, "5. TECHNICIAN DIAGNOSIS / ROOT CAUSE", y, margin);
 
-  y += 1.5;
+  y += 0.1;
 
   pdfTextAreaPage1(
     doc,
@@ -1960,14 +1907,14 @@ const generateEditServiceReportPDF = async (
     margin,
     y,
     contentWidth,
-    20,
+    33,
   );
 
   // ============================================================
   // SPACE BETWEEN SECTION 5 AND SECTION 6
   // ============================================================
 
-  y += 25;
+  y += 35;
 
   // ============================================================
   // 6. WORK PERFORMED
@@ -1975,9 +1922,9 @@ const generateEditServiceReportPDF = async (
 
   y = pdfSection(doc, "6. WORK PERFORMED / CORRECTIVE ACTION", y, margin);
 
-  y += 1.5;
+  y += 0.1;
 
-  pdfTextAreaPage1(doc, values.workPerformed, margin, y, contentWidth, 20);
+  pdfTextAreaPage1(doc, values.workPerformed, margin, y, contentWidth, 33);
 
   // ============================================================
   // PAGE 2
@@ -1996,7 +1943,7 @@ const generateEditServiceReportPDF = async (
 
   y = pdfSection(doc, "7. MACHINE TRIAL & FINAL STATUS", y, margin);
 
-  y += 2;
+  y += 1;
 
   const trialStatuses = [
     ["machineTestedSuccessfully", "Machine tested successfully"],
@@ -2055,7 +2002,7 @@ const generateEditServiceReportPDF = async (
     );
   });
 
-  y += 14;
+  y += 13.5;
 
   pdfFieldCompactWithMoreGap(
     doc,
@@ -2077,7 +2024,7 @@ const generateEditServiceReportPDF = async (
     9.5,
   );
 
-  y += 12;
+  y += 11.5;
 
   pdfFieldCompactWithMoreGap(
     doc,
@@ -2089,7 +2036,7 @@ const generateEditServiceReportPDF = async (
     9.5,
   );
 
-  y += 12;
+  y += 11;
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(9);
@@ -2097,9 +2044,9 @@ const generateEditServiceReportPDF = async (
 
   doc.text("Trial / Status Remarks", margin, y + 2);
 
-  pdfTextArea(doc, values.trialStatusRemarks, margin, y + 4, contentWidth, 12);
+  pdfTextArea(doc, values.trialStatusRemarks, margin, y + 4, contentWidth, 16);
 
-  y += 19;
+  y += 22.5;
 
   // ============================================================
   // 8. PARTS USED / RECOMMENDED
@@ -2150,7 +2097,7 @@ const generateEditServiceReportPDF = async (
     styles: {
       font: "helvetica",
       fontSize: 7.5,
-      cellPadding: 1.6,
+      cellPadding: 1,
       lineColor: "#B8C8D3",
       lineWidth: 0.25,
       textColor: PDF_TEXT,
@@ -2189,7 +2136,7 @@ const generateEditServiceReportPDF = async (
     },
   });
 
-  y = doc.lastAutoTable.finalY + 4;
+  y = doc.lastAutoTable.finalY + 2;
 
   // ============================================================
   // 9. FURTHER ACTION REQUIRED
@@ -2197,7 +2144,7 @@ const generateEditServiceReportPDF = async (
 
   y = pdfSection(doc, "9. FURTHER ACTION REQUIRED", y, margin);
 
-  y += 2;
+  y += 1.5;
 
   const furtherActions = [
     ["noFurtherAction", "No further action required"],
@@ -2260,24 +2207,24 @@ const generateEditServiceReportPDF = async (
     );
   });
 
-  y += 15;
+  y += 13;
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(9);
   doc.setTextColor(PDF_BLUE);
 
-  doc.text("Required Action / Follow-up", margin, y + 2);
+  doc.text("Required Action / Follow-up", margin, y + 4);
 
   pdfTextArea(
     doc,
     values.requiredActionFollowUp,
     margin,
-    y + 4,
+    y + 6,
     contentWidth,
-    12,
+    16,
   );
 
-  y += 19;
+  y += 25;
 
   // ============================================================
   // 10. SERVICE COMMERCIAL CLASSIFICATION
@@ -2323,27 +2270,27 @@ const generateEditServiceReportPDF = async (
   y += 17;
 
   // ============================================================
-  // 11. CUSTOMER ACKNOWLEDGEMENT
+  // 11. CUSTOMER REMARKS
   // ============================================================
 
-  y = pdfSection(doc, "11. CUSTOMER ACKNOWLEDGEMENT", y, margin);
+  y = pdfSection(doc, "11. CUSTOMER REMARKS", y, margin);
 
-  doc.setFillColor("#F1F6FA");
-
-  doc.rect(margin, y + 1, contentWidth, 8, "F");
+  doc.setFillColor("#FFFFFF");
+  doc.setDrawColor(PDF_BORDER);
+  doc.setLineWidth(0.28);
+  doc.rect(margin, y + 1, contentWidth, 18, "FD");
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
   doc.setTextColor(PDF_TEXT);
 
-  const acknowledgement =
-    "I acknowledge that the above service work has been carried out and the machine status / further action has been explained to us.";
-
+  const acknowledgement = pdfSafe(
+    values.customerRemarks || values.customerAcknowledgement || "",
+  );
   const ackLines = doc.splitTextToSize(acknowledgement, contentWidth - 6);
+  doc.text(ackLines.slice(0, 4), margin + 1.5, y + 4.5);
 
-  doc.text(ackLines.slice(0, 2), margin + 1.5, y + 6.2);
-
-  y += 15;
+  y += 24.5;
 
   // ============================================================
   // SIGNATURES
@@ -2364,7 +2311,6 @@ const generateEditServiceReportPDF = async (
     sigWidth,
     "Service Technician",
     values.technicianName,
-    values.technicianDate,
     signatureTechnician,
   );
 
@@ -2379,7 +2325,6 @@ const generateEditServiceReportPDF = async (
     sigWidth,
     "Service Manager",
     values.managerName,
-    values.managerDate,
     signatureManager,
   );
 
@@ -2394,7 +2339,6 @@ const generateEditServiceReportPDF = async (
     sigWidth,
     "Customer",
     values.customerName,
-    values.customerDate,
     signatureCustomer,
   );
 
@@ -2506,8 +2450,16 @@ const ViewField = ({
   </div>
 );
 
-const ViewLargeText = ({ name, viewForm }) => (
-  <Form.Item name={name}>
+const ViewLargeText = ({ name, viewForm, label }) => (
+  <Form.Item
+    name={name}
+    label={
+      label ? (
+        <span style={{ fontWeight: 600, color: "#0D3884" }}>{label}</span>
+      ) : undefined
+    }
+    style={{ marginBottom: 18 }}
+  >
     <Input.TextArea
       readOnly
       autoSize={{
@@ -2524,7 +2476,7 @@ const ViewLargeText = ({ name, viewForm }) => (
   </Form.Item>
 );
 
-const ViewSignatureCard = ({ title, name, date, signature }) => (
+const ViewSignatureCard = ({ title, name, signature }) => (
   <div className="col-12 col-md-6 col-xl-4 mb-4">
     <div
       style={{
@@ -2568,27 +2520,6 @@ const ViewSignatureCard = ({ title, name, date, signature }) => (
           }}
         >
           {name || "-"}
-        </div>
-
-        <div
-          style={{
-            fontSize: "12px",
-            color: "#666",
-            marginBottom: "3px",
-          }}
-        >
-          Date
-        </div>
-
-        <div
-          style={{
-            borderBottom: "1px solid #D9E2EA",
-            paddingBottom: "6px",
-            marginBottom: "12px",
-            minHeight: "28px",
-          }}
-        >
-          {date || "-"}
         </div>
 
         {/* <div
@@ -2664,7 +2595,7 @@ export default function ServiceForm({ onLogout, user }) {
   const [address, setAddress] = useState("");
   const [serialNumber, setSerialNumber] = useState("");
   const [selectedTechnicians, setSelectedTechnicians] = useState([]);
-
+  const [selectedEditTechnicians, setSelectedEditTechnicians] = useState([]);
   // ============================================================
   // NEW SERVICE REPORT - PARTS TABLE STATE
   // Keep the Parts table values in explicit React state.
@@ -3712,7 +3643,7 @@ export default function ServiceForm({ onLogout, user }) {
       serviceCommercialClassification: serviceCommercialClassification,
 
       // ==========================================================
-      // 11. CUSTOMER ACKNOWLEDGEMENT
+      // 11. CUSTOMER REMARKS
       // ==========================================================
 
       technicianName:
@@ -3720,20 +3651,17 @@ export default function ServiceForm({ onLogout, user }) {
         viewReport["Service Technician Name"] ||
         "",
 
-      technicianDate:
-        viewReport["Technician Date"] ||
-        viewReport["Service Technician Date"] ||
-        "",
-
       managerName:
         viewReport["Manager Name"] || viewReport["Service Manager Name"] || "",
 
-      managerDate:
-        viewReport["Manager Date"] || viewReport["Service Manager Date"] || "",
+      customerRemarks:
+        viewReport["Customer Remarks"] ||
+        viewReport.customerRemarks ||
+        viewReport["Customer Acknowledgement"] ||
+        viewReport.customerAcknowledgement ||
+        "",
 
       customerName: viewReport["Customer Name"] || "",
-
-      customerDate: viewReport["Customer Date"] || "",
     });
 
     // ============================================================
@@ -3796,10 +3724,23 @@ export default function ServiceForm({ onLogout, user }) {
 
     const commercial = getCommercialClassification(editReport);
 
-    const technicians = String(editReport["Technician"] || "")
-      .split(",")
-      .map((x) => x.trim())
+    // const technicians = String(editReport["Technician"] || "")
+    //   .split(",")
+    //   .map((x) => x.trim())
+    //   .filter(Boolean);
+
+    const savedTechnicianValue =
+      editReport["Technician"] ?? editReport.technician ?? "";
+
+    const technicians = (
+      Array.isArray(savedTechnicianValue)
+        ? savedTechnicianValue
+        : String(savedTechnicianValue).split(",")
+    )
+      .map((technician) => String(technician).trim())
       .filter(Boolean);
+
+    setSelectedEditTechnicians(technicians.slice(0, 5));
 
     const existingParts =
       Array.isArray(editReport.parts) && editReport.parts.length
@@ -3890,16 +3831,15 @@ export default function ServiceForm({ onLogout, user }) {
         editReport["Service Technician Name"] ||
         editReport["Technician Name"] ||
         "",
-      technicianDate:
-        editReport["Service Technician Date"] ||
-        editReport["Technician Date"] ||
-        "",
       managerName:
         editReport["Service Manager Name"] || editReport["Manager Name"] || "",
-      managerDate:
-        editReport["Service Manager Date"] || editReport["Manager Date"] || "",
+      customerRemarks:
+        editReport["Customer Remarks"] ||
+        editReport.customerRemarks ||
+        editReport["Customer Acknowledgement"] ||
+        editReport.customerAcknowledgement ||
+        "",
       customerName: editReport["Customer Name"] || "",
-      customerDate: editReport["Customer Date"] || "",
     });
 
     // Every edit must be re-signed. Existing signature data is not
@@ -3979,6 +3919,7 @@ export default function ServiceForm({ onLogout, user }) {
     setEditReport(null);
     setEditPartsData([]);
     editForm.resetFields();
+    setSelectedEditTechnicians([]);
     setEditSignatureTechnician("");
     setEditSignatureManager("");
     setEditSignatureCustomer("");
@@ -4200,12 +4141,13 @@ export default function ServiceForm({ onLogout, user }) {
         serviceCommercialClassification: JSON.stringify(
           values.serviceCommercialClassification || [],
         ),
+        customerRemarks:
+          values.customerRemarks || values.customerAcknowledgement || "",
+        customerAcknowledgement:
+          values.customerRemarks || values.customerAcknowledgement || "",
         technicianName: values.technicianName || "",
-        technicianDate: values.technicianDate || "",
         managerName: values.managerName || "",
-        managerDate: values.managerDate || "",
         customerName: values.customerName || "",
-        customerDate: values.customerDate || "",
         // Included for API compatibility; signatures are used for the PDF.
         signatureTechnician: editSignatureTechnician,
         signatureManager: editSignatureManager,
@@ -4569,11 +4511,8 @@ export default function ServiceForm({ onLogout, user }) {
         { title: "Goodwill", key: "Goodwill" },
         { title: "Chargeable commissioning", key: "Chargeable commissioning" },
         { title: "Service Technician Name", key: "Service Technician Name" },
-        { title: "Service Technician Date", key: "Service Technician Date" },
         { title: "Service Manager Name", key: "Service Manager Name" },
-        { title: "Service Manager Date", key: "Service Manager Date" },
         { title: "Customer Name", key: "Customer Name" },
-        { title: "Customer Date", key: "Customer Date" },
         { title: "Modified User", key: "Modified User" },
         { title: "Modified date & time", key: "Modified date & time" },
       ];
@@ -4959,12 +4898,6 @@ export default function ServiceForm({ onLogout, user }) {
               "Service Technician",
               "technicianName",
             ]);
-          case "Service Technician Date":
-            return firstValue(record, [
-              key,
-              "Technician Date",
-              "technicianDate",
-            ]);
           case "Service Manager Name":
             return firstValue(record, [
               key,
@@ -4972,19 +4905,11 @@ export default function ServiceForm({ onLogout, user }) {
               "Service Manager",
               "managerName",
             ]);
-          case "Service Manager Date":
-            return firstValue(record, [key, "Manager Date", "managerDate"]);
           case "Customer Name":
             return firstValue(record, [
               key,
               "Customer Acknowledgement Name",
               "customerName",
-            ]);
-          case "Customer Date":
-            return firstValue(record, [
-              key,
-              "Customer Acknowledgement Date",
-              "customerDate",
             ]);
           case "Modified User":
             return firstValue(record, [
@@ -5039,7 +4964,7 @@ export default function ServiceForm({ onLogout, user }) {
       setSection(38, "PARTS USED / RECOMMENDED");
       setSection(43, "FURTHER ACTION REQUIRED");
       setSection(49, "SERVICE COMMERCIAL CLASSIFICATION");
-      setSection(57, "CUSTOMER ACKNOWLEDGEMENT");
+      setSection(57, "CUSTOMER REMARKS");
       setSection(63, "USER MODIFIED DETAILS");
 
       const worksheetData = [
@@ -5489,8 +5414,10 @@ export default function ServiceForm({ onLogout, user }) {
           <Button
             className="service-report-edit-action"
             icon={<EditOutlined />}
-            disabled={loading}
+            disabled={loading || editSaveLoading}
             onClick={() => {
+              if (editSaveLoading) return;
+
               setEditReport(record);
               setEditModalOpen(true);
             }}
@@ -5655,6 +5582,15 @@ export default function ServiceForm({ onLogout, user }) {
     }
   };
 
+  const handleEditTechChange = (value) => {
+    if (value.length <= 5) {
+      setSelectedEditTechnicians(value);
+      editForm.setFieldsValue({
+        technician: value,
+      });
+    }
+  };
+
   useEffect(() => {
     updateCanvasSize();
     window.addEventListener("resize", updateCanvasSize);
@@ -5663,7 +5599,7 @@ export default function ServiceForm({ onLogout, user }) {
 
   // ============================================================
   // TEXT LIMIT UTILITY
-  // Maximum: 3 lines and 512 characters
+  // Maximum: 3 lines and 700 characters
   // ============================================================
   const enforceSectionTextLimit = (value) => {
     const input = typeof value === "string" ? value : "";
@@ -5673,9 +5609,25 @@ export default function ServiceForm({ onLogout, user }) {
 
     let limited = lines.join("\n");
 
-    // Then limit total characters to 512
-    if (limited.length > 512) {
-      limited = limited.substring(0, 512);
+    // Then limit total characters to 700
+    if (limited.length > 700) {
+      limited = limited.substring(0, 700);
+    }
+
+    return limited;
+  };
+
+  const enforceSectionCustomerTextLimit = (value) => {
+    const input = typeof value === "string" ? value : "";
+
+    // First limit to 3 explicit lines
+    const lines = input.split("\n").slice(0, 2);
+
+    let limited = lines.join("\n");
+
+    // Then limit total characters to 700
+    if (limited.length > 400) {
+      limited = limited.substring(0, 400);
     }
 
     return limited;
@@ -5684,12 +5636,13 @@ export default function ServiceForm({ onLogout, user }) {
   const enforceSectionTrailRequiredLimit = (value) => {
     const input = typeof value === "string" ? value : "";
 
-    // First limit to 2 explicit lines
-    const lines = input.split("\n").slice(0, 2);
+    // Handle Windows, Mac and Linux line breaks
+    const lines = input.split(/\r\n|\r|\n/).slice(0, 2);
 
+    // Maximum 2 lines
     let limited = lines.join("\n");
 
-    // Then limit total characters to 250
+    // Maximum 250 characters
     if (limited.length > 250) {
       limited = limited.substring(0, 250);
     }
@@ -5697,9 +5650,57 @@ export default function ServiceForm({ onLogout, user }) {
     return limited;
   };
 
-  // Prevent the user from creating a 4th line by pressing Enter.
-  // The existing onChange handlers still enforce the same 3-line / 512-character
-  // restriction for typing and pasted content.
+  const handleLimitedTextPaste = (e, fieldName, fieldLabel) => {
+    const textarea = e.currentTarget;
+    const pastedText = e.clipboardData?.getData("text/plain") ?? "";
+
+    const currentValue = textarea.value || "";
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+
+    const updatedValue =
+      currentValue.slice(0, start) + pastedText + currentValue.slice(end);
+
+    const limitedValue = enforceSectionTrailRequiredLimit(updatedValue);
+
+    // IMPORTANT: Allow normal paste if it is within the limit.
+    if (updatedValue === limitedValue) {
+      return;
+    }
+
+    // Block only when pasted content exceeds the limit.
+    e.preventDefault();
+
+    form.setFieldsValue({
+      [fieldName]: limitedValue,
+    });
+
+    notification.warning({
+      message: "Warning",
+      description: `${fieldLabel} allows a maximum of 2 lines and 250 characters.`,
+      placement: "bottomRight",
+    });
+  };
+
+  // ============================================================
+  // CUSTOMER REMARKS TEXT LIMIT
+  // Maximum: 4 explicit lines and 400 characters.
+  // Separate helper: existing field limits remain unchanged.
+  // ============================================================
+  const enforceCustomerRemarksLimit = (value) => {
+    const input = typeof value === "string" ? value : "";
+    const lines = input.split(/\r?\n/).slice(0, 2);
+    let limited = lines.join("\n");
+
+    if (limited.length > 350) {
+      limited = limited.substring(0, 350);
+    }
+
+    return limited;
+  };
+
+  // Prevent the user from creating a 5th line by pressing Enter.
+  // Customer Remarks is limited to 4 lines and 400 characters.
   const handleSectionTextKeyDown = (e) => {
     if (e.key !== "Enter") return;
 
@@ -5769,13 +5770,13 @@ export default function ServiceForm({ onLogout, user }) {
 
   const handleTrialStatusRemarksChange = (e) => {
     const input = e.target.value;
-    const limited = enforceSectionTextLimit(input);
+    const limited = enforceSectionTrailRequiredLimit(input);
 
     if (input !== limited) {
       notification.warning({
         message: "Warning",
         description:
-          "Trial / Status Remarks is limited to 3 lines and 512 characters. Excess text was removed.",
+          "Trial / Status Remarks is limited to 2 lines and 250 characters. Excess text was removed.",
         placement: "bottomRight",
       });
     }
@@ -5785,15 +5786,39 @@ export default function ServiceForm({ onLogout, user }) {
     });
   };
 
-  const handleCustomerComplaintChange = (e) => {
+  const handleCustomerRemarksKeyDown = (e) => {
+    if (e.key !== "Enter") return;
+    const currentValue = String(e.currentTarget?.value || "");
+    if (currentValue.split(/\r?\n/).length >= 4) e.preventDefault();
+  };
+
+  const handleCustomerRemarksChange = (e) => {
     const input = e.target.value;
-    const limited = enforceSectionTextLimit(input);
+    const limited = enforceCustomerRemarksLimit(input);
 
     if (input !== limited) {
       notification.warning({
         message: "Warning",
         description:
-          "Customer complaint is limited to 3 lines and 512 characters. Excess text was removed.",
+          "Customer Remarks is limited to 2 lines and 350 characters. Excess text was removed.",
+        placement: "bottomRight",
+      });
+    }
+
+    form.setFieldsValue({
+      customerRemarks: limited,
+    });
+  };
+
+  const handleCustomerComplaintChange = (e) => {
+    const input = e.target.value;
+    const limited = enforceSectionCustomerTextLimit(input);
+
+    if (input !== limited) {
+      notification.warning({
+        message: "Warning",
+        description:
+          "Customer complaint is limited to 2 lines and 400 characters. Excess text was removed.",
         placement: "bottomRight",
       });
     }
@@ -5811,7 +5836,7 @@ export default function ServiceForm({ onLogout, user }) {
       notification.warning({
         message: "Warning",
         description:
-          "Technician diagnosis is limited to 3 lines and 512 characters. Excess text was removed.",
+          "Technician diagnosis is limited to 3 lines and 700 characters. Excess text was removed.",
         placement: "bottomRight",
       });
     }
@@ -5829,7 +5854,7 @@ export default function ServiceForm({ onLogout, user }) {
       notification.warning({
         message: "Warning",
         description:
-          "Work performed is limited to 3 lines and 512 characters. Excess text was removed.",
+          "Work performed is limited to 3 lines and 700 characters. Excess text was removed.",
         placement: "bottomRight",
       });
     }
@@ -5843,20 +5868,102 @@ export default function ServiceForm({ onLogout, user }) {
   // EDIT FORM - TEXT INPUT LIMITS
   // Same limits as the New Service Report form
   // ============================================================
+  //   const handleEditSectionTextChange = (fieldName, fieldLabel, e) => {
+  //     const input = e.target.value;
+
+  //     // Keep the Edit Form limits exactly aligned with the New Form:
+  //     // Section 4 = 3 lines / 400 characters.
+  //     // Sections 5 and 6 = 4 lines / 700 characters.
+  //     const isCustomerComplaint = fieldName === "customerComplaint";
+  //     const limited = isCustomerComplaint
+  //       ? enforceSectionCustomerTextLimit(input)
+  //       : enforceSectionTextLimit(input);
+
+  //     if (input !== limited) {
+  //       const limitDescription = isCustomerComplaint
+  //         ? "2 lines and 400 characters"
+  //         : "3 lines and 700 characters";
+
+  //       notification.warning({
+  //         message: "Warning",
+  //         description: `${fieldLabel} is limited to ${limitDescription}. Excess text was removed.`,
+  //         placement: "bottomRight",
+  //       });
+  //     }
+
+  //     editForm.setFieldsValue({
+  //       [fieldName]: limited,
+  //     });
+  //   };
+
   const handleEditSectionTextChange = (fieldName, fieldLabel, e) => {
     const input = e.target.value;
-    const limited = enforceSectionTextLimit(input);
+
+    // Identify fields with their own specific text limits.
+    const isCustomerComplaint = fieldName === "customerComplaint";
+
+    const isTrialOrRequiredAction =
+      fieldName === "trialStatusRemarks" ||
+      fieldName === "requiredActionFollowUp";
+
+    // Apply the correct limit for each field.
+    let limited;
+
+    if (isTrialOrRequiredAction) {
+      // Trial / Status Remarks:
+      // Required Action / Follow-up:
+      // Maximum 2 lines and 250 characters.
+      limited = enforceSectionTrailRequiredLimit(input);
+    } else if (isCustomerComplaint) {
+      // Customer Complaint:
+      // Maximum 2 lines and 400 characters.
+      limited = enforceSectionCustomerTextLimit(input);
+    } else {
+      // Technician Diagnosis / Work Performed:
+      // Maximum 3 lines and 700 characters.
+      limited = enforceSectionTextLimit(input);
+    }
+
+    // Display the correct warning.
+    if (input !== limited) {
+      let limitDescription;
+
+      if (isTrialOrRequiredAction) {
+        limitDescription = "2 lines and 250 characters";
+      } else if (isCustomerComplaint) {
+        limitDescription = "2 lines and 400 characters";
+      } else {
+        limitDescription = "3 lines and 700 characters";
+      }
+
+      notification.warning({
+        message: "Warning",
+        description: `${fieldLabel} is limited to ${limitDescription}. Excess text was removed.`,
+        placement: "bottomRight",
+      });
+    }
+
+    // Update only the relevant Edit Form field.
+    editForm.setFieldsValue({
+      [fieldName]: limited,
+    });
+  };
+
+  const handleEditCustomerRemarksChange = (e) => {
+    const input = e.target.value;
+    const limited = enforceCustomerRemarksLimit(input);
 
     if (input !== limited) {
       notification.warning({
         message: "Warning",
-        description: `${fieldLabel} is limited to 3 lines and 512 characters. Excess text was removed.`,
+        description:
+          "Customer Remarks is limited to 2 lines and 350 characters. Excess text was removed.",
         placement: "bottomRight",
       });
     }
 
     editForm.setFieldsValue({
-      [fieldName]: limited,
+      customerRemarks: limited,
     });
   };
 
@@ -6450,17 +6557,18 @@ export default function ServiceForm({ onLogout, user }) {
         ),
 
         // ======================================================
-        // CUSTOMER ACKNOWLEDGEMENT
+        // CUSTOMER REMARKS
         // ======================================================
 
+        customerRemarks:
+          values.customerRemarks || values.customerAcknowledgement || "",
+        customerAcknowledgement:
+          values.customerRemarks || values.customerAcknowledgement || "",
         technicianName: values.technicianName || "",
-        technicianDate: values.technicianDate || "",
 
         managerName: values.managerName || "",
-        managerDate: values.managerDate || "",
 
         customerName: values.customerName || "",
-        customerDate: values.customerDate || "",
 
         // ======================================================
         // SIGNATURES
@@ -6572,8 +6680,8 @@ export default function ServiceForm({ onLogout, user }) {
       ) {
         throw new Error(
           "The backend did not confirm a valid Service Report Number. " +
-          "No PDF will be generated. Keep this submission pending and " +
-          "check the report table before submitting again.",
+            "No PDF will be generated. Keep this submission pending and " +
+            "check the report table before submitting again.",
         );
       }
 
@@ -6911,10 +7019,13 @@ export default function ServiceForm({ onLogout, user }) {
       // multiple users submit at the same time.
       const pdfReportNumberForUpload = confirmedSavedReportNumber;
 
-      if (!pdfReportNumberForUpload || !/^\d+$/.test(pdfReportNumberForUpload)) {
+      if (
+        !pdfReportNumberForUpload ||
+        !/^\d+$/.test(pdfReportNumberForUpload)
+      ) {
         throw new Error(
           "The backend-confirmed Service Report Number is invalid. " +
-          "PDF generation and download have been stopped.",
+            "PDF generation and download have been stopped.",
         );
       }
 
@@ -6941,8 +7052,8 @@ export default function ServiceForm({ onLogout, user }) {
       if (generatedPdfSrn !== pdfReportNumberForUpload) {
         throw new Error(
           `PDF SRN verification failed. Backend confirmed ${pdfReportNumberForUpload}, ` +
-          `but the generated PDF reports ${generatedPdfSrn || "no SRN"}. ` +
-          "The PDF was not downloaded or uploaded.",
+            `but the generated PDF reports ${generatedPdfSrn || "no SRN"}. ` +
+            "The PDF was not downloaded or uploaded.",
         );
       }
 
@@ -7196,28 +7307,38 @@ export default function ServiceForm({ onLogout, user }) {
   // HH:MM
   // ==========================================================
 
+  // const timeRule = (fieldName) => [
+  //   {
+  //     required: true,
+  //     message: `Please enter ${fieldName}`,
+  //   },
+  //   {
+  //     pattern: /^([01]\d|2[0-3]):([0-5]\d)$/,
+  //     message: "Please enter time in HH:MM (24 hr) format",
+  //   },
+  // ];
+
+  // const formatHHMM = (value = "") => {
+  //   // Remove everything except numbers
+  //   let digits = value.replace(/\D/g, "").slice(0, 4);
+
+  //   // Automatically add colon after HH
+  //   if (digits.length >= 3) {
+  //     return `${digits.slice(0, 2)}:${digits.slice(2)}`;
+  //   }
+
+  //   return digits;
+  // };
+
+  // Arrival Time and Completion Time validation
+  // Accept normal text containing letters, numbers, spaces, and symbols.
   const timeRule = (fieldName) => [
     {
       required: true,
+      whitespace: true,
       message: `Please enter ${fieldName}`,
     },
-    {
-      pattern: /^([01]\d|2[0-3]):([0-5]\d)$/,
-      message: "Please enter time in HH:MM (24 hr) format",
-    },
   ];
-
-  const formatHHMM = (value = "") => {
-    // Remove everything except numbers
-    let digits = value.replace(/\D/g, "").slice(0, 4);
-
-    // Automatically add colon after HH
-    if (digits.length >= 3) {
-      return `${digits.slice(0, 2)}:${digits.slice(2)}`;
-    }
-
-    return digits;
-  };
 
   // ==========================================================
   // CONTACT NUMBER VALIDATION
@@ -7641,16 +7762,8 @@ export default function ServiceForm({ onLogout, user }) {
             >
               <Input
                 size="large"
-                placeholder="HH:MM"
-                maxLength={5}
-                inputMode="numeric"
-                onChange={(e) => {
-                  const formatted = formatHHMM(e.target.value);
-
-                  form.setFieldsValue({
-                    arrivalTime: formatted,
-                  });
-                }}
+                placeholder="Enter arrival time"
+                maxLength={50}
               />
             </Form.Item>
           </div>
@@ -7658,7 +7771,6 @@ export default function ServiceForm({ onLogout, user }) {
           {/* ================================================= */}
           {/* COMPLETION TIME */}
           {/* ================================================= */}
-
           <div className="col-md-6">
             <Form.Item
               label="Completion Time"
@@ -7667,16 +7779,8 @@ export default function ServiceForm({ onLogout, user }) {
             >
               <Input
                 size="large"
-                placeholder="HH:MM"
-                maxLength={5}
-                inputMode="numeric"
-                onChange={(e) => {
-                  const formatted = formatHHMM(e.target.value);
-
-                  form.setFieldsValue({
-                    completionTime: formatted,
-                  });
-                }}
+                placeholder="Enter completion time"
+                maxLength={50}
               />
             </Form.Item>
           </div>
@@ -7873,7 +7977,7 @@ export default function ServiceForm({ onLogout, user }) {
         >
           <TextArea
             rows={3}
-            maxLength={512}
+            maxLength={400}
             showCount
             placeholder="Enter customer complaint / reported problem"
             onChange={handleCustomerComplaintChange}
@@ -7896,8 +8000,8 @@ export default function ServiceForm({ onLogout, user }) {
           ]}
         >
           <TextArea
-            rows={3}
-            maxLength={512}
+            rows={4}
+            maxLength={700}
             showCount
             placeholder="Enter technician diagnosis / root cause"
             onChange={handleTechnicianDiagnosisChange}
@@ -7920,8 +8024,8 @@ export default function ServiceForm({ onLogout, user }) {
           ]}
         >
           <TextArea
-            rows={3}
-            maxLength={512}
+            rows={4}
+            maxLength={700}
             showCount
             placeholder="Enter work performed / corrective action"
             onChange={handleWorkPerformedChange}
@@ -8040,6 +8144,7 @@ export default function ServiceForm({ onLogout, user }) {
         <Form.Item
           label="Trial / Status Remarks"
           name="trialStatusRemarks"
+          normalize={enforceSectionTrailRequiredLimit}
           rules={[
             {
               required: true,
@@ -8052,9 +8157,8 @@ export default function ServiceForm({ onLogout, user }) {
             maxLength={250}
             showCount
             placeholder="Enter trial / status remarks"
-            onChange={handleTrialStatusRemarksChange}
             onKeyDown={handleSectionTextKeyDown}
-          />{" "}
+          />
         </Form.Item>
 
         {/* ==================================================== */}
@@ -8122,6 +8226,7 @@ export default function ServiceForm({ onLogout, user }) {
         <Form.Item
           label="Required Action / Follow-up"
           name="requiredActionFollowUp"
+          normalize={enforceSectionTrailRequiredLimit}
           rules={[
             {
               required: true,
@@ -8134,9 +8239,8 @@ export default function ServiceForm({ onLogout, user }) {
             maxLength={250}
             showCount
             placeholder="Enter required action / follow-up"
-            onChange={handleRequiredActionFollowUpChange}
             onKeyDown={handleSectionTextKeyDown}
-          />{" "}
+          />
         </Form.Item>
 
         {/* ==================================================== */}
@@ -8183,19 +8287,30 @@ export default function ServiceForm({ onLogout, user }) {
         </Form.Item>
 
         {/* ==================================================== */}
-        {/* 11. CUSTOMER ACKNOWLEDGEMENT */}
+        {/* 11. CUSTOMER REMARKS */}
         {/* ==================================================== */}
 
-        <SectionTitle title="11. CUSTOMER ACKNOWLEDGEMENT" />
+        <SectionTitle title="11. CUSTOMER REMARKS" />
 
-        <div
-          style={{
-            fontSize: "16px",
-          }}
+        <Form.Item
+          name="customerRemarks"
+          rules={[
+            {
+              required: true,
+              whitespace: true,
+              message: "Please enter customer remarks",
+            },
+          ]}
         >
-          I acknowledge that the above service work has been carried out and the
-          machine status / further action has been explained to me.
-        </div>
+          <Input.TextArea
+            rows={3}
+            maxLength={350}
+            showCount
+            placeholder="Enter customer remarks"
+            onChange={handleCustomerRemarksChange}
+            onKeyDown={handleCustomerRemarksKeyDown}
+          />
+        </Form.Item>
 
         <div className="row mt-2">
           {/* ================= SERVICE TECHNICIAN ================= */}
@@ -8251,33 +8366,6 @@ export default function ServiceForm({ onLogout, user }) {
                   Clear
                 </Button>
               </div>
-              <Form.Item
-                label="Date"
-                name="technicianDate"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter date",
-                  },
-                  {
-                    pattern: /^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/,
-                    message: "Enter date in DD-MM-YYYY format",
-                  },
-                ]}
-                className="mt-2"
-              >
-                <Input
-                  placeholder="DD-MM-YYYY"
-                  value={form.getFieldValue("technicianDate") || ""}
-                  onChange={(e) => {
-                    const formatted = formatDDMMYYYY(e.target.value);
-
-                    form.setFieldsValue({
-                      technicianDate: formatted,
-                    });
-                  }}
-                />
-              </Form.Item>
             </Form.Item>
           </div>
 
@@ -8334,33 +8422,6 @@ export default function ServiceForm({ onLogout, user }) {
                   Clear
                 </Button>
               </div>
-              <Form.Item
-                label="Date"
-                name="managerDate"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter date",
-                  },
-                  {
-                    pattern: /^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/,
-                    message: "Enter date in DD-MM-YYYY format",
-                  },
-                ]}
-                className="mt-2"
-              >
-                <Input
-                  placeholder="DD-MM-YYYY"
-                  value={form.getFieldValue("managerDate") || ""}
-                  onChange={(e) => {
-                    const formatted = formatDDMMYYYY(e.target.value);
-
-                    form.setFieldsValue({
-                      managerDate: formatted,
-                    });
-                  }}
-                />
-              </Form.Item>
             </Form.Item>
           </div>
 
@@ -8415,33 +8476,6 @@ export default function ServiceForm({ onLogout, user }) {
                   Clear
                 </Button>
               </div>
-              <Form.Item
-                label="Date"
-                name="customerDate"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter date",
-                  },
-                  {
-                    pattern: /^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/,
-                    message: "Enter date in DD-MM-YYYY format",
-                  },
-                ]}
-                className="mt-2"
-              >
-                <Input
-                  placeholder="DD-MM-YYYY"
-                  value={form.getFieldValue("customerDate") || ""}
-                  onChange={(e) => {
-                    const formatted = formatDDMMYYYY(e.target.value);
-
-                    form.setFieldsValue({
-                      customerDate: formatted,
-                    });
-                  }}
-                />
-              </Form.Item>
             </Form.Item>
           </div>
         </div>
@@ -8680,7 +8714,7 @@ export default function ServiceForm({ onLogout, user }) {
         footer={null}
         destroyOnHidden
         maskClosable={!editSaveLoading}
-        closable={!editSaveLoading}
+        closable={true}
       >
         <div
           style={{
@@ -8731,6 +8765,7 @@ export default function ServiceForm({ onLogout, user }) {
           layout="vertical"
           requiredMark
           onFinish={handleEditSave}
+          disabled={editSaveLoading}
         >
           <SectionTitle title="1. CUSTOMER & VISIT INFORMATION" />
           <div className="row">
@@ -8760,8 +8795,14 @@ export default function ServiceForm({ onLogout, user }) {
               <Form.Item
                 label="Service Date"
                 name="serviceDate"
+                getValueFromEvent={(e) =>
+                  formatDDMMYYYY(e?.target?.value || "")
+                }
                 rules={[
-                  { required: true, message: "Please enter service date" },
+                  {
+                    required: true,
+                    message: "Please enter service date",
+                  },
                   {
                     pattern: /^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/,
                     message: "Enter date in DD-MM-YYYY format",
@@ -8771,6 +8812,7 @@ export default function ServiceForm({ onLogout, user }) {
                 <Input placeholder="DD-MM-YYYY" />
               </Form.Item>
             </div>
+
             <div className="col-md-6">
               <Form.Item
                 label="Site / Location"
@@ -8807,33 +8849,51 @@ export default function ServiceForm({ onLogout, user }) {
                 <Select
                   mode="multiple"
                   size="large"
+                  placeholder="Select up to 5 technicians"
+                  value={selectedEditTechnicians}
+                  onChange={handleEditTechChange}
                   maxTagCount="responsive"
                   optionFilterProp="label"
+                  style={{ width: "100%" }}
                   options={technicianOptions.map((technician) => ({
                     label: technician,
                     value: technician,
+                    disabled:
+                      selectedEditTechnicians.length >= 5 &&
+                      !selectedEditTechnicians.includes(technician),
                   }))}
                 />
               </Form.Item>
             </div>
+
             <div className="col-md-6">
               <Form.Item
                 label="Arrival Time"
                 name="arrivalTime"
                 rules={timeRule("arrival time")}
               >
-                <Input placeholder="HH:MM" maxLength={5} />
+                <Input
+                  size="large"
+                  placeholder="Enter arrival time"
+                  maxLength={50}
+                />
               </Form.Item>
             </div>
+
             <div className="col-md-6">
               <Form.Item
                 label="Completion Time"
                 name="completionTime"
                 rules={timeRule("completion time")}
               >
-                <Input placeholder="HH:MM" maxLength={5} />
+                <Input
+                  size="large"
+                  placeholder="Enter completion time"
+                  maxLength={50}
+                />
               </Form.Item>
             </div>
+
             <div className="col-md-6">
               <Form.Item
                 label="Total Working Hours"
@@ -8962,7 +9022,7 @@ export default function ServiceForm({ onLogout, user }) {
           >
             <TextArea
               rows={3}
-              maxLength={512}
+              maxLength={400}
               showCount
               onChange={(e) =>
                 handleEditSectionTextChange(
@@ -8980,8 +9040,8 @@ export default function ServiceForm({ onLogout, user }) {
             rules={requiredRule("technician diagnosis / root cause")}
           >
             <TextArea
-              rows={3}
-              maxLength={512}
+              rows={4}
+              maxLength={700}
               showCount
               onChange={(e) =>
                 handleEditSectionTextChange(
@@ -8999,8 +9059,8 @@ export default function ServiceForm({ onLogout, user }) {
             rules={requiredRule("work performed / corrective action")}
           >
             <TextArea
-              rows={3}
-              maxLength={512}
+              rows={4}
+              maxLength={700}
               showCount
               onChange={(e) =>
                 handleEditSectionTextChange(
@@ -9360,21 +9420,20 @@ export default function ServiceForm({ onLogout, user }) {
             </Checkbox.Group>
           </Form.Item>
 
-          <SectionTitle title="11. CUSTOMER ACKNOWLEDGEMENT" />
-          <div
-            style={{
-              background: "#F1F6FA",
-              border: "1px solid #D9E2EA",
-              borderRadius: 6,
-              padding: "14px 16px",
-              marginBottom: 20,
-              fontSize: 15,
-              lineHeight: 1.6,
-            }}
+          <SectionTitle title="11. CUSTOMER REMARKS" />
+          <Form.Item
+            name="customerRemarks"
+            rules={requiredRule("customer remarks")}
           >
-            I acknowledge that the above service work has been carried out and
-            the machine status / further action has been explained to me.
-          </div>
+            <Input.TextArea
+              rows={3}
+              maxLength={350}
+              showCount
+              placeholder="Enter customer remarks"
+              onChange={handleEditCustomerRemarksChange}
+              onKeyDown={handleCustomerRemarksKeyDown}
+            />
+          </Form.Item>
 
           <div className="row mt-2">
             {/* ================= SERVICE TECHNICIAN ================= */}
@@ -9421,27 +9480,6 @@ export default function ServiceForm({ onLogout, user }) {
                     Clear
                   </Button>
                 </div>
-                <Form.Item
-                  label="Date"
-                  name="technicianDate"
-                  rules={[
-                    { required: true, message: "Please enter date" },
-                    {
-                      pattern: /^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/,
-                      message: "Enter date in DD-MM-YYYY format",
-                    },
-                  ]}
-                  className="mt-2"
-                >
-                  <Input
-                    placeholder="DD-MM-YYYY"
-                    onChange={(e) => {
-                      editForm.setFieldsValue({
-                        technicianDate: formatDDMMYYYY(e.target.value),
-                      });
-                    }}
-                  />
-                </Form.Item>
               </Form.Item>
             </div>
 
@@ -9489,27 +9527,6 @@ export default function ServiceForm({ onLogout, user }) {
                     Clear
                   </Button>
                 </div>
-                <Form.Item
-                  label="Date"
-                  name="managerDate"
-                  rules={[
-                    { required: true, message: "Please enter date" },
-                    {
-                      pattern: /^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/,
-                      message: "Enter date in DD-MM-YYYY format",
-                    },
-                  ]}
-                  className="mt-2"
-                >
-                  <Input
-                    placeholder="DD-MM-YYYY"
-                    onChange={(e) => {
-                      editForm.setFieldsValue({
-                        managerDate: formatDDMMYYYY(e.target.value),
-                      });
-                    }}
-                  />
-                </Form.Item>
               </Form.Item>
             </div>
 
@@ -9555,27 +9572,6 @@ export default function ServiceForm({ onLogout, user }) {
                     Clear
                   </Button>
                 </div>
-                <Form.Item
-                  label="Date"
-                  name="customerDate"
-                  rules={[
-                    { required: true, message: "Please enter date" },
-                    {
-                      pattern: /^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/,
-                      message: "Enter date in DD-MM-YYYY format",
-                    },
-                  ]}
-                  className="mt-2"
-                >
-                  <Input
-                    placeholder="DD-MM-YYYY"
-                    onChange={(e) => {
-                      editForm.setFieldsValue({
-                        customerDate: formatDDMMYYYY(e.target.value),
-                      });
-                    }}
-                  />
-                </Form.Item>
               </Form.Item>
             </div>
           </div>
@@ -9584,8 +9580,8 @@ export default function ServiceForm({ onLogout, user }) {
             <Button
               className="edit-cancel-button"
               size="large"
-              onClick={closeEditModal}
-              disabled={editSaveLoading}
+              onClick={() => closeEditModal(true)}
+              disabled={false}
             >
               Cancel
             </Button>
@@ -9593,9 +9589,10 @@ export default function ServiceForm({ onLogout, user }) {
             <Button
               className="edit-save-button"
               type="primary"
+              htmlType="submit"
               size="large"
               loading={editSaveLoading}
-              onClick={handleEditSave}
+              disabled={editSaveLoading}
             >
               {editSaveLoading ? "Updating..." : "Update Changes"}
             </Button>
@@ -10031,7 +10028,11 @@ export default function ServiceForm({ onLogout, user }) {
             />
           </div>
 
-          <ViewLargeText name="trialStatusRemarks" viewForm={viewForm} />
+          <ViewLargeText
+            name="trialStatusRemarks"
+            label="Trial / Status Remarks"
+            viewForm={viewForm}
+          />
 
           {/* ==========================================================
           SECTION 8
@@ -10221,7 +10222,11 @@ export default function ServiceForm({ onLogout, user }) {
             </Checkbox.Group>
           </Form.Item>
 
-          <ViewLargeText name="requiredActionFollowUp" viewForm={viewForm} />
+          <ViewLargeText
+            name="requiredActionFollowUp"
+            label="Required Action / Follow-up"
+            viewForm={viewForm}
+          />
 
           {/* ==========================================================
           SECTION 10
@@ -10284,7 +10289,7 @@ export default function ServiceForm({ onLogout, user }) {
           SECTION 11
       ========================================================== */}
 
-          <ViewSectionTitle title="11. CUSTOMER ACKNOWLEDGEMENT" />
+          <ViewSectionTitle title="11. CUSTOMER REMARKS" />
 
           <div
             style={{
@@ -10295,10 +10300,13 @@ export default function ServiceForm({ onLogout, user }) {
               marginBottom: "20px",
               fontSize: "15px",
               lineHeight: "1.6",
+              whiteSpace: "pre-wrap",
+              overflowWrap: "anywhere",
             }}
           >
-            I acknowledge that the above service work has been carried out and
-            the machine status / further action has been explained to me.
+            {viewForm.getFieldValue("customerRemarks") ||
+              viewForm.getFieldValue("customerAcknowledgement") ||
+              "-"}
           </div>
 
           {/* ==========================================================
@@ -10311,7 +10319,6 @@ export default function ServiceForm({ onLogout, user }) {
             <ViewSignatureCard
               title="Service Technician"
               name={viewForm.getFieldValue("technicianName")}
-              date={viewForm.getFieldValue("technicianDate")}
               // signature={viewReport?.["Technician Signature"]}
             />
 
@@ -10320,7 +10327,6 @@ export default function ServiceForm({ onLogout, user }) {
             <ViewSignatureCard
               title="Service Manager"
               name={viewForm.getFieldValue("managerName")}
-              date={viewForm.getFieldValue("managerDate")}
               // signature={viewReport?.["Manager Signature"]}
             />
 
@@ -10329,7 +10335,6 @@ export default function ServiceForm({ onLogout, user }) {
             <ViewSignatureCard
               title="Customer"
               name={viewForm.getFieldValue("customerName")}
-              date={viewForm.getFieldValue("customerDate")}
               // signature={viewReport?.["Customer Signature"]}
             />
           </div>
